@@ -1,0 +1,74 @@
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+
+\usepackage{fontspec}
+
+\XeTeXlinebreaklocale "zh"
+\XeTeXlinebreakskip = 0pt plus 1pt
+
+\usepackage{titlesec}
+\numberwithin{equation}{section}
+\titleformat{\section}[block]{\bfseries\Large}{\thesection\quad}{0pt}{}
+
+\begin{document}
+\begin{center}
+\thispagestyle{empty}
+
+\vspace{2.5cm}
+{\fontsize{44}{48}\bfseries\selectfont Notes on Szabo}
+\vfill
+\begin{center}
+\Large  \textit{by} \textbf{Shangjia Liu} 
+\end{center} 
+{\Large 2026}
+\vspace{1.75cm}
+\end{center}
+
+\newpage
+\pagenumbering{roman}  
+\setcounter{page}{2}  
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\section{多电子波函数与多电子算符}
+{本章介绍量子化学的基本概念、技巧及必要的记号。具体有三方面:
+多电子算符 (如哈密顿算符)的结构和多电子波函数的形式(即 Slater 
+行列式及其线性组合);如 何求算符在 Slater 行列式之间的矩阵元;
+Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock 
+近似和以 HF 为起点的高级方法,所以现在学的知识在以后的章节中
+极有用处。}
+\subsection{电子问题(the Electronic Problem)}
+本书重点关注何近似求解非相对论不含时 Schrödinger 方程：
+\begin{equation}
+  \hat{H} |\Phi\rangle = E |\Phi\rangle 
+  \label{eq:schrodinger}
+\end{equation}
+若用原子 单位制, 则 N 个电子 M 个核的哈密顿量就是:  
+\begin{equation}
+  \hat{H}=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2-
+  \sum_{A=1}^{M}\frac{1}{2M_A}\nabla_A^2-
+  \sum_{A=1}^{M}\sum_{i=1}^N\frac{Z_A}{r_{iA}}+
+  \sum_{i=1}^{N}\sum_{j>i}^N\frac{1}{r_{ij}}+
+  \sum_{A=1}^M\sum_{B>A}^M\frac{Z_AZ_B}{R_{AB}} 
+  \label{eq:hamiltonian}
+\end{equation}
+式 \eqref{eq:hamiltonian}中的第一项是全 部电子的动能算符,
+ 第二项是核的动能算符, 第三项是核与电子间的 Coulomb 吸引势能,
+第四项和第五项分别是电子间和核之间的排斥势.
+\subsubsection{原子单位制(Atomic Units)}
+本书采用原子单位制, 其中  \(\hbar = m_e = e = 1\)
+(即普朗克常数、电子质量和电子电荷都取值为 1),
+因此能量单位是 Hartree ($E_h$), 长度单位是 Bohr ($a_0$)
+.原子单位制下的Schrödinger方程为:
+\begin{equation}
+\left( -\frac{1}{2} \nabla'^2 - \frac{1}{r'} \right) \phi' = \epsilon \phi'
+\end{equation}
+
+\end{document}
