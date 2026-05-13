@@ -2,8 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
-\usepackage{geometry}
-\geometry{a4paper, margin=1in}
+\usepackage[margin=1in]{geometry}
 
 
 \usepackage{fontspec}
@@ -21,6 +20,7 @@
 
 \vspace{2.5cm}
 {\fontsize{44}{48}\bfseries\selectfont Notes on Szabo}
+
 \vfill
 \begin{center}
 \Large  \textit{by} \textbf{Shangjia Liu} 
@@ -44,6 +44,8 @@
 Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock 
 近似和以 HF 为起点的高级方法,所以现在学的知识在以后的章节中
 极有用处。}
+
+
 \subsection{电子问题(the Electronic Problem)}
 本书重点关注何近似求解非相对论不含时 Schrödinger 方程：
 \begin{equation}
@@ -62,13 +64,36 @@ Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock
 式 \eqref{eq:hamiltonian}中的第一项是全 部电子的动能算符,
  第二项是核的动能算符, 第三项是核与电子间的 Coulomb 吸引势能,
 第四项和第五项分别是电子间和核之间的排斥势.
+
 \subsubsection{原子单位制(Atomic Units)}
 本书采用原子单位制, 其中  \(\hbar = m_e = e = 1\)
 (即普朗克常数、电子质量和电子电荷都取值为 1),
 因此能量单位是 Hartree ($E_h$), 长度单位是 Bohr ($a_0$)
 .原子单位制下的Schrödinger方程为:
 \begin{equation}
-\left( -\frac{1}{2} \nabla'^2 - \frac{1}{r'} \right) \phi' = \epsilon \phi'
+\left( -\frac{1}{2} \nabla'^2 - \frac{1}{r'} \right) \phi' = E \phi'
+\end{equation}
+对于基态氢原子,该方程的解可以导出能量$E=-0.5Hartrees.$
+
+\subsubsection{the Born-Oppenheimer Approximation}
+由于原子核远比电子重,所以它们运动得较慢.因此,很大程度上可将
+分子中的电子视作在位置固定的核产生的势场中运动.在这个近似下,式
+\eqref{eq:hamiltonian}中第二项, 即核动能项,可以被忽略;式中最后一项,
+即核间排斥势可以视作常量.任意常数加到算符上产生的效果就是
+本征值加一常数,而本征函数不变.式\eqref{eq:hamiltonian}中的剩余项称作电子
+的哈密顿量,或描述在 M 个点电荷产生的势场中运动的 N 个电子的哈密顿量,
+\begin{equation}
+\hat{H}_{elec}=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2-
+\sum_{A=1}^{M}\sum_{i=1}^N\frac{Z_A}{r_{iA}}+
+\sum_{i=1}^{N}\sum_{j>i}^N\frac{1}{r_{ij}}  
+\end{equation}
+电子哈密顿量的 Schrödinger 方程为
+\begin{equation}
+  \hat{H}_{elec} |\Phi\rangle = E_{elec} |\Phi\rangle
+\end{equation}
+其解就是电子波函数
+\begin{equation}
+  |\Phi_{\text{elec}}\rangle=\Phi_{\text{elec}}(\{\mathbf{r}_i\}; \{\mathbf{R}_A\})
 \end{equation}
 
 \end{document}
