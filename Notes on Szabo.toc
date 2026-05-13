@@ -1,4 +1,8 @@
 \contentsline {section}{\numberline {1}多电子波函数与多电子算符}{1}{}%
 \contentsline {subsection}{\numberline {1.1}电子问题(the Electronic Problem)}{1}{}%
 \contentsline {subsubsection}{\numberline {1.1.1}原子单位制(Atomic Units)}{1}{}%
-\contentsline {subsubsection}{\numberline {1.1.2}the Born-Oppenheimer Approximation}{1}{}%
+\contentsline {subsubsection}{\numberline {1.1.2}The Born--Oppenheimer Approximation}{1}{}%
+\contentsline {subsubsection}{\numberline {1.1.3}The Antisymmetry or Pauli Principle}{2}{}%
+\contentsline {subsection}{\numberline {1.2}Obitals,Slater Determinants,and Basis Functuions}{2}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Spin Orbitals and Spatial Orbitals}{2}{}%
+\contentsline {subsubsection}{\numberline {1.2.2}Hartree Product}{3}{}%

@@ -41,7 +41,7 @@
 {本章介绍量子化学的基本概念、技巧及必要的记号。具体有三方面:
 多电子算符 (如哈密顿算符)的结构和多电子波函数的形式(即 Slater 
 行列式及其线性组合);如 何求算符在 Slater 行列式之间的矩阵元;
-Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock 
+Hartree-Fock 近似的基本思想。之后的章节就是 Hartree-Fock 
 近似和以 HF 为起点的高级方法,所以现在学的知识在以后的章节中
 极有用处。}
 
@@ -52,7 +52,8 @@ Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock
   \hat{H} |\Phi\rangle = E |\Phi\rangle 
   \label{eq:schrodinger}
 \end{equation}
-若用原子 单位制, 则 N 个电子 M 个核的哈密顿量就是:  
+若用原子单位制, 则 N 个电子 M 个核的哈密顿量就是:
+
 \begin{equation}
   \hat{H}=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2-
   \sum_{A=1}^{M}\frac{1}{2M_A}\nabla_A^2-
@@ -68,14 +69,15 @@ Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock
 \subsubsection{原子单位制(Atomic Units)}
 本书采用原子单位制, 其中  \(\hbar = m_e = e = 1\)
 (即普朗克常数、电子质量和电子电荷都取值为 1),
-因此能量单位是 Hartree ($E_h$), 长度单位是 Bohr ($a_0$)
+因此能量单位是 Hartree~($E_{\mathrm{h}}$), 长度单位是 Bohr~($a_0$)
 .原子单位制下的Schrödinger方程为:
 \begin{equation}
-\left( -\frac{1}{2} \nabla'^2 - \frac{1}{r'} \right) \phi' = E \phi'
+  \left( -\frac{1}{2} \nabla^{\prime 2} - \frac{1}{r'} \right) \phi' = E \phi'
+  \label{eq:schrodinger-atomic}
 \end{equation}
-对于基态氢原子,该方程的解可以导出能量$E=-0.5Hartrees.$
+对于基态氢原子,该方程的解可以导出能量 $E = -0.5$~Hartree.
 
-\subsubsection{the Born-Oppenheimer Approximation}
+\subsubsection{The Born--Oppenheimer Approximation}
 由于原子核远比电子重,所以它们运动得较慢.因此,很大程度上可将
 分子中的电子视作在位置固定的核产生的势场中运动.在这个近似下,式
 \eqref{eq:hamiltonian}中第二项, 即核动能项,可以被忽略;式中最后一项,
@@ -95,5 +97,67 @@ Hatree-Fock 近似的基本思想。之后的章节就是Hartree-Fock
 \begin{equation}
   |\Phi_{\text{elec}}\rangle=\Phi_{\text{elec}}(\{\mathbf{r}_i\}; \{\mathbf{R}_A\})
 \end{equation}
+它描述电子的运动,并显式依赖于电子坐标,而以参数的方式依赖于核坐标,
+电子能量也参数地依赖于核坐标:
+\begin{equation}
+  E_{\text{elec}} = E_{\text{elec}}(\{\mathbf{R}_A\})
+  \label{eq:Eelec}
+\end{equation}
+它以参数依赖核坐标是指:对于每种不同的核构型, $\Phi_{\text{elec}}$
+（作为电子坐标的函数）的形式都不一样。核坐标并不显式地出现在 $\Phi_{\text{elec}}$
+中。核固定构型下的总能量还需包含核排斥能。
+\begin{equation}
+  E_{\text{total}} = E_{\text{elec}} +
+   \sum_{A=1}^M\sum_{B>A}^M\frac{Z_AZ_B}{R_{AB}}
+\end{equation}
+
+\subsubsection{The Antisymmetry or Pauli Principle}
+方程式\eqref{eq:Eelec}中的电子能量 $E_{\text{elec}}$ 是核坐标的函数,
+ 但它并不依赖于电子自旋.因此,我们引入两个自旋函数$\alpha(\omega)$和
+ $\beta(\omega)$,它们分别对应自旋向上和自旋向下的电子.函数变量 $\omega$
+ 无明显意义，只需要自旋函数正交完备
+\begin{equation}
+  \langle \alpha | \alpha \rangle = \langle \beta | \beta \rangle = 1, \quad
+  \langle \alpha | \beta \rangle = 0
+\end{equation}
+由于哈密顿算符中并无自旋,仅仅在波函数中强加自旋无法产生任何后果.
+但若 对波函数加上一个额外的约束,就能得到一个完善的理论:
+ 多电子波函数在交换任意 两个电子坐标的操作下,必须是反对称的
+\begin{equation}
+  \hat{P}_{ij} |\Phi\rangle = -|\Phi\rangle
+  \label{pauli}
+\end{equation}
+这个额外的要求有时叫作反对称原理, 它是我们熟悉的
+ Pauli 不相容原理很常见 的一种表述.即波函数不仅要满足
+  Schrödinger 方程,还要满足反对称原理\eqref{pauli}.
+满足反对称原理的波函数可以用 Slater 行列式来构造
+
+\subsection{Obitals,Slater Determinants,and Basis Functuions}
+\subsubsection{Spin Orbitals and Spatial Orbitals}
+常认为空间分子轨道构成一组正交基
+\begin{equation}
+  \langle \psi_p | \psi_q \rangle = \delta_{pq}
+\end{equation}
+若空间轨道集合 $\{\psi_i\}$ 为正交归一的，则用它可以精确地展开任意函数
+\begin{equation}
+  f(\mathbf{r}) = \sum_i^{\infty} a_i \psi_i(\mathbf{r})
+\end{equation}
+实际运算不可能用到完备集，而取其中有限个空间轨道 $\{\psi_p\}$ .
+
+为完整描述一个电子, 需要指定电子自旋.描述自旋和空间两部分的波函数叫作自旋轨道, 
+$\chi(x)$, 其中 x 代表自旋坐标与空间坐标.一个空间轨道可以构造两个自旋轨道
+\begin{equation}
+  \chi(\mathbf{x})=\begin{cases}
+    \psi(\mathbf{r})\alpha(\omega) \\
+    \text{or}\\
+    \psi(\mathbf{r})\beta(\omega)
+  \end{cases}
+\end{equation}
+\subsubsection{Hartree Product}
+无相互作用N电子的集合，其哈密顿量形式如下
+\begin{equation}
+  \hat{H} = \sum_{i=1}^N \hat{h}(i)
+\end{equation}
+其中 $\hat{h}(i)$ 是描述第 i 个电子的单电子算符.
 
 \end{document}
