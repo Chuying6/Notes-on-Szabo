@@ -357,7 +357,7 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
 \begin{equation}
   \hat{H} = \hat{h}(1) + \hat{h}(2) + \frac{1}{r_{12}}
 \end{equation}
-为了方便，吧总哈密顿量分为单电子和双电子部分
+为了方便，把总哈密顿量分为单电子和双电子部分
 \begin{equation}
   \hat{O}_1 = \hat{h}(1) + \hat{h}(2)
 \label{singleelec}
@@ -385,34 +385,54 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
     \Bigr\} .
 \end{aligned}
 \end{equation}
-由自旋轨道正一性
+由自旋轨道正交归一性，上式中交叉项积分为零，化简得
 \begin{equation}
-  \langle\Psi_0|\hat{h}(1)|\Psi_0\rangle=
-  \frac{1}{2}\int d\mathbf{x_1\chi_1^*(\mathbf{x_1})h(\mathbf{r_1})\chi_1(\mathbf{x_1})}
-  +\frac{1}{2}\int d\mathbf{x_1\chi_2^*(\mathbf{x_1})h(\mathbf{r_1})\chi_2(\mathbf{x_1})}
+  \langle\Psi_0|\hat{h}(1)|\Psi_0\rangle
+  = \frac{1}{2} \int d\mathbf{x}_1\, \chi_1^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_1(\mathbf{x}_1)
+  + \frac{1}{2} \int d\mathbf{x}_1\, \chi_2^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_2(\mathbf{x}_1)
 \end{equation}
-同样可以得到$\langle\Psi_0|h(2)|\Psi_0\rangle=\langle\Psi_0|h(1)|\Psi_0\rangle$,那么
+同样可以得到 $\langle\Psi_0|\hat{h}(2)|\Psi_0\rangle = \langle\Psi_0|\hat{h}(1)|\Psi_0\rangle$，那么
 \begin{equation}
-  \langle\Psi_0|\hat{O}(1)|\Psi_0\rangle=
-  \int d\mathbf{x_1\chi_1^*(\mathbf{x_1})h(\mathbf{r_1})\chi_1(\mathbf{x_1})}
-  +\int d\mathbf{x_1\chi_2^*(\mathbf{x_1})h(\mathbf{r_1})\chi_2(\mathbf{x_1})}
+  \langle\Psi_0|\hat{O}_1|\Psi_0\rangle
+  = \int d\mathbf{x}_1\, \chi_1^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_1(\mathbf{x}_1)
+  + \int d\mathbf{x}_1\, \chi_2^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_2(\mathbf{x}_1)
 \end{equation}
- 上式中的积分叫做单电子积分，我们引入如下记号表示包含自旋轨道的单电子积分
- \begin{equation}
-  \langle i|\hat{h}|j\rangle=\langle\chi_i|\hat{h}|\chi_j\rangle
-  =\int d\mathbf{x_1\chi_i^*(\mathbf{x_1})h(\mathbf{r_1})\chi_j(\mathbf{x_1})}
- \end{equation}
- 既有
- \begin{equation}
-   \langle\Psi_0|\hat{O}|\Psi_0\rangle=
-   \langle 1|h|1\rangle+\langle 2|h|2\rangle
- \end{equation}
+上式中的积分叫做单电子积分，我们引入如下记号表示包含自旋轨道的单电子积分
+\begin{equation}
+  \langle i|\hat{h}|j\rangle = \langle\chi_i|\hat{h}|\chi_j\rangle
+  = \int d\mathbf{x}_1\, \chi_i^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_j(\mathbf{x}_1)
+\end{equation}
+即有
+\begin{equation}
+  \langle\Psi_0|\hat{O}_1|\Psi_0\rangle
+  = \langle 1|\hat{h}|1\rangle + \langle 2|\hat{h}|2\rangle
+\end{equation}
 
- 现在来计算$\hat{0}_2$的矩阵元
- \begin{equation}
-   \langle\Psi_0|\hat{O_2}|\Psi\rangle
-=\int d\mathbf{x_1}d
- \end{equation}
+ 现在来计算 $\hat{O}_2$ 的矩阵元
+
+\begin{equation}
+\begin{aligned}
+\langle\Psi_0|\hat{O}_2|\Psi_0\rangle
+&= \int d\mathbf{x}_1 d\mathbf{x}_2\;
+   \Bigl[ 2^{-1/2} \bigl( \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)
+                         - \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \bigr) \Bigr]^*
+   \; r_{12}^{-1} \;
+   \Bigl[ 2^{-1/2} \bigl( \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)
+                         - \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \bigr) \Bigr] \\[4pt]
+&= \frac{1}{2} \int d\mathbf{x}_1 d\mathbf{x}_2\;
+   \Bigl\{
+      \chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2) \\
+&\qquad + \chi_2^*(\mathbf{x}_1)\chi_1^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \\
+&\qquad - \chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \\
+&\qquad - \chi_2^*(\mathbf{x}_1)\chi_1^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)
+   \Bigr\}.
+\end{aligned}
+\label{eq:O2-matrix}
+\end{equation}
 
 
 
