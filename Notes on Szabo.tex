@@ -345,7 +345,7 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
 \end{equation}
 \subsection{Operators and Matrix Elements}
 本节来讲如何求得某算符在正交归一轨道构成的行列式之间的矩阵元.
-\subsubsection{Minimal Basis $H_2$ Matrix Elements}
+\subsubsection{Minimal Basis $\mathrm{H_2}$ Matrix Elements}
 我们先讨论极小基$H_2$模型的full CI矩阵元\eqref{22fullci}.其精确基态
 是Hartree-Fock基态$|\Phi_0\rangle=|1\bar{1}\rangle$和
 双重激发态$|\Psi_{12}^{34}\rangle=|2\bar{2}\rangle$的线性组合.我们需要求
@@ -415,8 +415,8 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
 \langle\Psi_0|\hat{O}_2|\Psi_0\rangle
 &= \int d\mathbf{x}_1 d\mathbf{x}_2\;
    \Bigl[ 2^{-1/2} \bigl( \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)
-                         - \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \bigr) \Bigr]^*
-   \; r_{12}^{-1} \;
+                         - \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \bigr) \Bigr]^* \\
+&\qquad \times r_{12}^{-1} \;
    \Bigl[ 2^{-1/2} \bigl( \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)
                          - \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \bigr) \Bigr] \\[4pt]
 &= \frac{1}{2} \int d\mathbf{x}_1 d\mathbf{x}_2\;
@@ -424,8 +424,8 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
       \chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
       \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2) \\
 &\qquad + \chi_2^*(\mathbf{x}_1)\chi_1^*(\mathbf{x}_2)\, r_{12}^{-1}\,
-      \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \\
-&\qquad - \chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2)
+      - \chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
       \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2) \\
 &\qquad - \chi_2^*(\mathbf{x}_1)\chi_1^*(\mathbf{x}_2)\, r_{12}^{-1}\,
       \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2)

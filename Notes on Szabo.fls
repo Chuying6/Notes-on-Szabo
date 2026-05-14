@@ -2,7 +2,7 @@ PWD /Users/lujia/Code/Notes on Szabo
 INPUT /usr/local/texlive/2026/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt
-INPUT Notes on Szabo.tex
+INPUT /Users/lujia/Code/Notes on Szabo/Notes on Szabo.tex
 OUTPUT Notes on Szabo.log
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/ctex/ctexart.cls
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/ctex/ctexart.cls
