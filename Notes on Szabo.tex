@@ -433,8 +433,48 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
 \end{aligned}
 \label{eq:O2-matrix}
 \end{equation}
-
-
+由于$r_{12}=r_{21}$,上式第二项积分变量可以交换，所以该项与第一项相等.
+类似的，第三项与第四项也相等.因此有
+\begin{equation}
+  \begin{aligned}
+  \langle\Psi_0|\hat{O}_2|\Psi_0\rangle
+  = \int d\mathbf{x}_1 d\mathbf{x}_2\;
+    \Bigl\{&
+      \chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_1(\mathbf{x}_1)\chi_2(\mathbf{x}_2) \\
+      - &\chi_1^*(\mathbf{x}_1)\chi_2^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+      \chi_2(\mathbf{x}_1)\chi_1(\mathbf{x}_2)
+    \Bigr\}.
+  \end{aligned}
+\end{equation}
+上面的积分就是双电子积分之一例，得名来源于积分变量包括电子1与电子2的空间坐标以及两个自旋坐标.
+习惯上常将所有双电子积分中的积分变量都写成电子1和2的坐标.现引入记号来表示含自旋轨道的双电子积分
+\begin{equation}
+  \langle ij|kl\rangle
+  =\langle\chi_i \chi_j |\chi_k \chi_l \rangle
+  = \int d\mathbf{x}_1 d\mathbf{x}_2\,
+     \chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+     \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2)
+\end{equation}
+那么就有
+\begin{equation}
+  \langle\Psi_0|\hat{O}_2|\Psi_0\rangle
+  = \langle 12|12\rangle - \langle 12|21\rangle
+\end{equation}
+Hartree--Fock基态能量就成为
+\begin{equation}
+  E_0 = (1|h|1) + (2|h|2) + \langle 12|12\rangle - \langle 12|21\rangle
+\end{equation}
+\subsubsection{单双电子积分的记法}
+由于双电子积分经常以如下的组合形式出现，在此引入一个人特别多几号来表示反对称
+双电子积分
+\begin{equation}
+  \langle ij||kl\rangle
+   = \langle ij|kl\rangle - \langle ij|lk\rangle
+   = \int d\mathbf{x}_1 d\mathbf{x}_2\,
+     \chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)\, r_{12}^{-1}\,
+     \bigl[ \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2) - \chi_l(\mathbf{x}_1)\chi_k(\mathbf{x}_2) \bigr]
+\end{equation}
 
 
 \end{document}

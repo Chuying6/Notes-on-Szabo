@@ -1,12 +1,12 @@
 # Fdb version 4
-["xdvipdfmx"] 1778767872.24851 "Notes on Szabo.xdv" "Notes on Szabo.pdf" "Notes on Szabo" 1778767872.53953 0
-  "Notes on Szabo.xdv" 1778767872.22194 102580 eed403681bc7863a132f31e4639ec41d "xelatex"
+["xdvipdfmx"] 1778841849.51271 "Notes on Szabo.xdv" "Notes on Szabo.pdf" "Notes on Szabo" 1778841849.77518 0
+  "Notes on Szabo.xdv" 1778841849.48893 109912 70683d9d4daffdea53e08ac4138ad4f5 "xelatex"
   (generated)
   "Notes on Szabo.pdf"
   (rewritten before read)
-["xelatex"] 1778767871.74414 "/Users/lujia/Code/Notes on Szabo/Notes on Szabo.tex" "Notes on Szabo.xdv" "Notes on Szabo" 1778767872.53899 0
+["xelatex"] 1778841849.08153 "/Users/lujia/Code/Notes on Szabo/Notes on Szabo.tex" "Notes on Szabo.xdv" "Notes on Szabo" 1778841849.77466 0
   "/System/Library/Fonts/Menlo.ttc" 1775463057 2156036 ec05dfca6821d85440da0899493002c3 ""
-  "/Users/lujia/Code/Notes on Szabo/Notes on Szabo.tex" 1778767871.56494 20587 c1d8d58f069dadf352fb18bcdcfe8f18 ""
+  "/Users/lujia/Code/Notes on Szabo/Notes on Szabo.tex" 1778841848.49952 22434 166b7534f05a8e26d0aa1e85e72e3308 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -72,9 +72,9 @@
   "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
   "/usr/local/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1778591039 5948559 8a219de008a73e69889e95e3bcb32ea4 ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "Notes on Szabo.aux" 1778767872.22115 2735 ae7b60908ac9dd3c7a214ec6e59b77dd "xelatex"
-  "Notes on Szabo.tex" 1778767871.56494 20587 c1d8d58f069dadf352fb18bcdcfe8f18 ""
-  "Notes on Szabo.toc" 1778767872.22187 1341 9ed0e29d3f44f371011c6c79bd111a2f "xelatex"
+  "Notes on Szabo.aux" 1778841849.48829 2860 5dfe527384867d5463518c646118c234 "xelatex"
+  "Notes on Szabo.tex" 1778841848.49952 22434 166b7534f05a8e26d0aa1e85e72e3308 ""
+  "Notes on Szabo.toc" 1778841849.4889 1425 745dc3a92d5cde691925ec22fe881e0d "xelatex"
   (generated)
   "Notes on Szabo.aux"
   "Notes on Szabo.log"
