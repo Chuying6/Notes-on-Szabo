@@ -4,12 +4,6 @@
 \usepackage{amssymb}
 \usepackage[margin=1in]{geometry}
 
-
-\usepackage{fontspec}
-
-\XeTeXlinebreaklocale "zh"
-\XeTeXlinebreakskip = 0pt plus 1pt
-
 \usepackage{titlesec}
 \numberwithin{equation}{section}
 \titleformat{\section}[block]{\bfseries\Large}{\thesection\quad}{0pt}{}
@@ -469,12 +463,48 @@ Hartree--Fock基态能量就成为
 由于双电子积分经常以如下的组合形式出现，在此引入一个人特别多几号来表示反对称
 双电子积分
 \begin{equation}
-  \langle ij||kl\rangle
-   = \langle ij|kl\rangle - \langle ij|lk\rangle
-   = \int d\mathbf{x}_1 d\mathbf{x}_2\,
-     \chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)\, r_{12}^{-1}\,
-     \bigl[ \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2) - \chi_l(\mathbf{x}_1)\chi_k(\mathbf{x}_2) \bigr]
+  \begin{aligned}
+    \langle ij||kl\rangle
+    &= \langle ij|kl\rangle - \langle ij|lk\rangle \\[2pt]
+    &= \int d\mathbf{x}_1 d\mathbf{x}_2\,
+       \chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)\,
+       r_{12}^{-1}\,
+       \bigl[ \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2)
+            - \chi_l(\mathbf{x}_1)\chi_k(\mathbf{x}_2) \bigr]
+  \end{aligned}
+\end{equation}
+自旋轨道
+\begin{equation}
+  \left[i|h|j\right]=\langle i|h|j\rangle
+  = \int d\mathbf{x}_1\, \chi_i^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_j(\mathbf{x}_1)
+\end{equation}
+\begin{equation}
+ \langle ij|kl\rangle=\langle \chi_i\chi_j|chi_k\chi_l\rangle
+=\int d\mathbf{x_1}\mathbf{x_2}\chi_i^*(\mathbf{x_1})\chi_j(\mathbf{x_1})
+r_{12}^{-1} \chi_k(\mathbf{x_1})\chi_l(\mathbf{x_1})
 \end{equation}
 
-
+\begin{equation}
+  \left[ij||kl\right]=\langle ij||kl\rangle
+  = \int d\mathbf{x}_1 d\mathbf{x}_2\,
+     \chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)\,
+     r_{12}^{-1}\,
+     \bigl[ \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2)
+          - \chi_l(\mathbf{x}_1)\chi_k(\mathbf{x}_2) \bigr]
+\end{equation}
+空间轨道
+\begin{equation}
+ \left( i|h|j\right)=h_{ij}=\int d\mathbf{r_1}\psi_i^*(\mathbf{r}_1)
+ h(\mathbf{r}_1)\psi_j(\mathbf{r}_1)
+\end{equation}
+\begin{equation}
+  \left( ij|kl\right)=\int d\mathbf{r_1}d\mathbf{r_2}\psi_i^*(\mathbf{r_1})
+  \psi_j(\mathbf{r_1})r_{12}^{-1}\psi_k^*(\mathbf{r_2})\psi_l(\mathbf{r_2})
+\end{equation}
+\begin{equation}
+  \text{库伦积分 } J_{ij}=\left(ii|jj\right)
+\end{equation}
+\begin{equation}
+  \text{交换积分 } J_{ij}=\left(ij|ji\right)
+\end{equation}
 \end{document}
