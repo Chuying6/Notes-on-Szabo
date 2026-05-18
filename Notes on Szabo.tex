@@ -479,9 +479,9 @@ Hartree--Fock基态能量就成为
   = \int d\mathbf{x}_1\, \chi_i^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_j(\mathbf{x}_1)
 \end{equation}
 \begin{equation}
- \langle ij|kl\rangle=\langle \chi_i\chi_j|chi_k\chi_l\rangle
-=\int d\mathbf{x_1}\mathbf{x_2}\chi_i^*(\mathbf{x_1})\chi_j(\mathbf{x_1})
-r_{12}^{-1} \chi_k(\mathbf{x_1})\chi_l(\mathbf{x_1})
+ \langle ij|kl\rangle=\langle \chi_i\chi_j|\chi_k\chi_l\rangle
+=\int d\mathbf{x}_1 d\mathbf{x}_2\,\chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)
+r_{12}^{-1} \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2)
 \end{equation}
 
 \begin{equation}
@@ -505,6 +505,143 @@ r_{12}^{-1} \chi_k(\mathbf{x_1})\chi_l(\mathbf{x_1})
   \text{库伦积分 } J_{ij}=\left(ii|jj\right)
 \end{equation}
 \begin{equation}
-  \text{交换积分 } J_{ij}=\left(ij|ji\right)
+  \text{交换积分 } K_{ij}=\left(ij|ji\right)
 \end{equation}
+\subsubsection{General Rules for Matrix Elements}
+本节介绍一套求矩阵元的规则，下一节展示推导.量子化学有两类算符.第一类是单电子算符之和
+\begin{equation}
+  \hat{O}_1=\sum_{i=1}^{N}h\left(i\right)
+\end{equation}
+第二类是两电子算符之和
+\begin{equation}
+  \hat{O}_2=\sum_{i=1}^{N}\sum_{j>i}v\left(i,j\right)=\sum_{i<j}v\left(i,j\right)
+\end{equation}
+(1)单电子算符在行列式间的矩阵元有三种情况
+case1:$|K\rangle=|\dots mn \dots\rangle$
+\begin{equation}
+  \langle K|\hat{O}_1|K\rangle=\sum_{m}^{N}\langle m|h|m \rangle
+\end{equation}
+case2:$|K\rangle=|\dots mn \dots\rangle$ 
+$|L\rangle=|\dots pn \dots\rangle$ 
+\begin{equation}
+  \langle K|\hat{O}_1|L\rangle=\sum_{m}^{N}\langle m|h|p \rangle
+\end{equation}
+case3:$|K\rangle=|\dots mn \dots\rangle$
+$|L\rangle=|\dots pq \dots\rangle$
+\begin{equation}
+  \langle K|\hat{O}_1|K\rangle=0
+\end{equation}
+(2)双电子算符在行列式间的矩阵元有三种情况
+case1:$|K\rangle=|\dots mn \dots\rangle$
+\begin{equation}
+  \langle K|\hat{O}_2|K\rangle=\frac{1}{2}\sum_{m}^{N}\sum_{n}^{N}\langle mn||mn \rangle
+\end{equation}
+case2:$|K\rangle=|\dots mn \dots\rangle$ 
+$|L\rangle=|\dots pn \dots\rangle$ 
+\begin{equation}
+  \langle K|\hat{O}_2|L\rangle=\sum_{n}^{N}\langle mn||mn \rangle
+\end{equation}
+case3:$|K\rangle=|\dots mn \dots\rangle$
+$|L\rangle=|\dots pq \dots\rangle$
+\begin{equation}
+  \langle K|\hat{O}_2|K\rangle=\langle mn||pq \rangle
+\end{equation}
+根据上列式子可以快速卸除单个行列式$|K\rangle$的能量
+\begin{equation}
+  \langle K|\hat{H}|K\rangle=
+  \sum_{m}^{N}\langle m|h|m\rangle +\frac{1}{2}\sum_{m}^{N}\sum_{n}^{m}\langle mn||mn\rangle
+\end{equation}
+其中
+\begin{equation}
+  h(i)=-\frac{1}{2}\nabla_i^2-\sum_{A}\frac{Z_A}{r_{iA}}
+\end{equation}
+对于$H_2$极小基下，$|\Phi_0\rangle=|\chi_1\chi_2\rangle$
+\begin{equation}
+  \begin{aligned}
+  E_0&=\langle 1|h|1\rangle+\langle2|h|2\rangle+\langle12||12\rangle \\
+     &=\langle 1|h|1\rangle+\langle2|h|2\rangle+\langle12|12\rangle-\langle12|21\rangle
+  \end{aligned}
+\end{equation}
+\subsubsection{Derivation of the Rules for Matrix Elements}
+略
+\subsubsection{Transition from Spin Orbitals to Spatial Obitals}
+尽管在前面章节中使用自旋轨道可以简化量子化学理论设计的代数运算和各种记号，但是在运算中，
+自旋函数$\alpha$和$\beta$必须被积分掉.才能将自旋轨道约化为可数值运算的空间轨道及其积分
+
+我们以$H_2$极小基的Hartree-Fock基态为例
+\begin{equation}
+  |E_0=\langle \chi_1|h|\chi_1\rangle + \langle \chi_2|h|\chi_2\rangle + \langle 12||12\rangle
+\end{equation}  
+可以得到
+\begin{equation}
+  E_0=\langle \psi_1|h|\psi_1\rangle+\langle \bar{\psi_1}|h|\bar{\psi_1}\rangle+\langle \psi_1\bar{\psi_1}||\psi_1\bar{\psi_1}\rangle
+\end{equation}
+对于单电子积分
+\begin{equation}
+ \langle \bar{\psi_1}|h|\bar{\psi_1}\rangle=\int d\mathbf{r}d\omega_1\psi_1^*(\mathbf{r})\beta^*(\omega_1)h(\mathbf{r})\psi_1(\mathbf{r})\beta(\omega_1)
+\end{equation}
+注意到$\langle\beta|\beta\rangle$,那么就有
+\begin{equation}
+  \langle \bar{\psi_1}|h|\bar{\psi_1}\rangle=\int d\mathbf{r}\psi_1^*(\mathbf{r})h(\mathbf{r})\psi_1(\mathbf{r})=\langle \psi_1|h|\psi_1\rangle
+\end{equation}
+所以$E_0$中单电子部分的能量贡献是$2\langle \psi_1|h|\psi_1\rangle$
+对于$\langle \psi_1\bar{\psi_1}||\psi_1\bar{\psi_1}\rangle$有
+\begin{equation}
+  \begin{aligned}
+    \langle \psi_1\bar{\psi_1}||\psi_1\bar{\psi_1}\rangle
+    &= \langle \psi_1\bar{\psi_1}|\psi_1\bar{\psi_1}\rangle - \langle \psi_1\bar{\psi_1}|\bar{\psi_1}\psi_1\rangle \\
+    &= \iint d\mathbf{r}_1 d\mathbf{r}_2\, \psi_1^*(\mathbf{r}_1)\beta^*(\omega_1)\psi_1^*(\mathbf{r}_2)\alpha^*(\omega_2) r_{12}^{-1} \\
+    &\qquad\times \bigl[ \psi_1(\mathbf{r}_1)\beta(\omega_1)\psi_1(\mathbf{r}_2)\alpha(\omega_2) - \psi_1(\mathbf{r}_1)\alpha(\omega_1)\psi_1(\mathbf{r}_2)\beta(\omega_2) \bigr] 
+  \end{aligned}
+\end{equation}
+对于括号中的第一项，由于$\beta$和$\alpha$的正交性，该矩阵元会因子化为空间积分与自旋内积的乘积
+\begin{equation}
+  \beta(\omega_1)|\beta(\omega_1)\rangle =1 
+\end{equation}
+\begin{equation}
+  \alpha(\omega_2)|\alpha(\omega_2)\rangle =1
+\end{equation}
+所以
+\begin{equation}
+  \iint r_{12}^{-1}\psi_1(1)\psi_1(1)\psi_1(2)\psi_1(2)d\tau_1d\tau_2=\langle \psi_1\psi_1|\psi_1\psi_1\rangle
+\end{equation}
+对于第二项，自旋内积是$\beta(\omega_1)|\alpha(\omega_1)\rangle=0$，所以整个项为0
+因此$\langle \psi_1\bar{\psi_1}||\psi_1\bar{\psi_1}\rangle=\langle \psi_1\psi_1|\psi_1\psi_1\rangle$
+也就是
+\begin{equation}
+  \begin{aligned}
+  E_0&=2\langle\psi_1|h|\psi_1\rangle+\langle\psi_1\psi_1|\psi_1\psi_1\rangle \\
+     &=2\langle 1|h|1\rangle+\langle 11|11\rangle
+  \end{aligned}
+\end{equation}
+
+把上面的结论推广到有偶数电子的N电子体系中，可以写出N电子系统的闭壳层限制性Hartree-Fock波函数
+\begin{equation}
+  \Psi_0=|\psi_1\bar{\psi_1}\psi_2\bar{\psi_2}\cdots\psi_a\bar{\psi_a}\cdots\psi_N\bar{\psi_N}|
+\end{equation}
+积分可得
+\begin{equation}
+  E_0=2\sum_i\langle i|h|i\rangle+\sum_{i,j}(2J_{ij}-K_{ij})
+  \label{eq:rhf-energy}
+\end{equation}
+\subsubsection{Coulomb and Exchange Intergrals}
+式\eqref{eq:rhf-energy}中单电子项
+\begin{equation}
+  \langle a|h|a\rangle=h_{aa}=\int d\mathbf{r_1}\psi_a^*(\mathbf{r_1}\left(-\frac{1}{2}\nabla_1^2-\sum_{A}\frac{Z_a}{r_1A}\right))\psi_a(\mathbf{r_1})
+\end{equation}
+$h_{aa}$就是波函数$\psi_a(\mathbf{r_1})$所对应电子的平均动能加上核对它的吸引能量
+
+式\eqref{eq:rhf-energy}中双电子项
+\begin{equation}
+  J_{ij}=\langle ij|ij\rangle =
+  \int d\mathbf{r_1}d\mathbf{r_2}|\psi_a(\mathbf{r_1})|^2r_{12}^{-1}|\psi_b(\mathbf{r_2})|^2
+\end{equation}
+就是函数$|\psi_a(\mathbf{r_1})|^2$电子云与$|\psi_b(\mathbf{r_2})|^2$电子云的库仑相互作用的静电能，并称之为库伦积分.
+而对于积分
+\begin{equation}
+  K_{ij}=\langle ij|ji\rangle =  \int d\mathbf{r_1}d\mathbf{r_2}\psi_a^*(\mathbf{r_1})\psi_b^*(\mathbf{r_2})r_{12}^{-1}\psi_b(\mathbf{r_1})\psi_a(\mathbf{r_2})
+\end{equation}
+没有经典解释对应，称为交换积分.库伦积分和交换积分的值都是正的.下面我们证明行列式对应的能量中的交换积分是
+由交换相关 (exhcange correlation) 作用引起的，也即在单行列式近似下, 同自旋电子的运动相互关联.
+
 \end{document}
