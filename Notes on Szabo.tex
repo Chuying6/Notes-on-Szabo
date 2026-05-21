@@ -237,7 +237,7 @@ Hartree 积是无相关波函数，因为在体积微元$d\mathbf{x}_1$中找到
 Hartree-Fock 近似的精髓在于将复杂的多电子问题转换为单电子问题，
 而单电子问题是以平均的方式处理电子之间的排斥.由于Hartree-Fock方程式是非线性
 方程，只能迭代求解.这种方法称为自洽场方法(self-consistent field method).
-\subsubsection{The Minimal Basis $\mathrm{H}_2$ Model}       
+\subsubsection{The Minimal Basis \texorpdfstring{$\mathrm{H}_2$}{H2} Model}       
 现在来介绍一个简单的模型体系, 此模型贯穿全书, 我们会用它来展示许多量子化
 学的思想和方法. 它就是我们熟悉的极小基 MO-LCAO 下$\mathrm{H}_2$的分子.
 
@@ -342,7 +342,7 @@ $\langle \Phi_0 | \hat{H} | \Phi_0 \rangle$.为此，我们将full CI
 \end{equation}
 \subsection{Operators and Matrix Elements}
 本节来讲如何求得某算符在正交归一轨道构成的行列式之间的矩阵元.
-\subsubsection{Minimal Basis $\mathrm{H_2}$ Matrix Elements}
+\subsubsection{Minimal Basis \texorpdfstring{$\mathrm{H_2}$}{H2} Matrix Elements}
 我们先讨论极小基$H_2$模型的full CI矩阵元\eqref{22fullci}.其精确基态
 是Hartree-Fock基态$|\Phi_0\rangle=|1\bar{1}\rangle$和
 双重激发态$|\Psi_{12}^{34}\rangle=|2\bar{2}\rangle$的线性组合.我们需要求
@@ -952,6 +952,146 @@ Fock算符的总和=Fock算符的本征值之和-双电子积分之和:
 \subsection{Derivation of the Hartree-Fock Equations}
 本节来推导 Hartree-Fock 方程的一般自旋轨道形式, 也即, 将单 Slater 行列式的 能量极小化以得到式\ref{hf}.
 \subsubsection{Functional Variation}
+变分的目的就是寻找一个合适的$\Phi$使得$E[\Phi]$达到最小
+\begin{equation}
+  \delta E=0
+\end{equation}
+这个条件保证了E对于$\Phi$的任何变分都处于驻态(stationary).通常情况下，驻点就是最小值.
+给定一个线性变分尝试波函数
+\begin{equation}
+  |\Phi\rangle=\sum_{i=1}^{N}c_i|\Psi_i\rangle
+\end{equation}
+希望得到能量极小值
+\begin{equation}
+  E=\langle \Phi|\hat{H}|\Phi\rangle=\sum_{ij}c_i^*c_j\langle\Psi_i|\hat{H}|\Psi_j\rangle
+\end{equation}
+并且保持归一化
+\begin{equation}
+\langle\Phi|\Phi\rangle-1=\sum_{ij}c_i^*c_j\langle\Psi_i|\Psi_j\rangle-1=0
+\end{equation}
+利用Lagrange不定乘子法，我们可以将如下的泛函对$c_i$极小化
+\begin{equation}
+  \mathcal{L}=\sum_{ij}c_i^*c_j\langle\Psi_i|\hat{H}|\Psi_j\rangle-E\biggl(\sum_{ij}c_i^*c_j\langle\Psi_i|\Psi_j\rangle-1\biggr)
+\end{equation}
+下面令$\mathcal{L}$的一节变分为0
+\begin{equation}
+  \begin{aligned}
+  \delta\mathcal{L}&=\sum_{ij}\delta c_i^*c_j\langle\Psi_i|\hat{H}|\Psi_j\rangle-E\sum_{ij}\delta c_i^*c_j\langle\Psi_i|\Psi_j\rangle \\
+  &\quad +\sum_{ij}c_i^*\delta c_j\langle\Psi_i|\hat{H}|\Psi_j\rangle-E\sum_{ij}c_i^*\delta c_j\langle\Psi_i|\Psi_j\rangle
+  \end{aligned}
+\end{equation}
+两两合并，后两项交换指标利用厄米性可得
+\begin{equation}
+  \sum_{i}\delta c_i^*\big[\sum_j( H_{ij}-ES_{ij}c_{j})\big]+c.c. =0
+\end{equation}
+那么对任意的$\delta c_i^*$,都必有
+\begin{equation}
+\sum_j( H_{ij}-ES_{ij})c_j =0
+\end{equation}
+或写为
+\begin{equation}
+  \mathbf{Hc}=E\mathbf{Sc}
+\end{equation}
+我们将用它来导出Hartree-Fock方程
+\subsubsection{minimization of the Energy of a Single Determinant}
+给定一个单行列式 $|\Psi_0\rangle=|\chi_1\chi_2\dots\chi_N\rangle$, 能量$E_0\langle \Psi_0|\hat{H}|\Psi_0\rangle$是自旋轨道${\chi_a}$的泛函.
+ 为导出 Hartree-Fock方程需要关于自旋轨道进行极小化, 而且要满足自旋轨道正交归一的约束
+\begin{equation}
+  \langle \chi_a|\chi_b\rangle-\delta_{ab}=0
+\end{equation}
+考虑$\mathcal{L}[\{\chi_a\}]$作为自旋轨道的泛函
+\begin{equation}
+  \mathcal{L}[\{\chi_a\}]=E_0[\{\chi_a\}]-\sum_{ab}\epsilon_{ab}(\langle \chi_a|\chi_b\rangle-\delta_{ab})
+\end{equation}
+其中$E_0$是单行列式$|\Psi_0\rangle$的期望值
+\begin{equation}
+  E_0[\{\chi_a\}]=\sum_a^{N}\langle a|h|a\rangle + \frac{1}{2}\sum_{ab}^{N}\langle ab||ab\rangle
+\end{equation}
+仿照上一节,$\mathcal{L}$的一阶变分为0
+\begin{equation}
+  \begin{aligned}
+  \delta\mathcal{L} &= \sum_{a=1}^{N}\int d\mathbf{x}_1\,\delta\chi_a^*(1)
+    \Big[ h(1)\chi_a(1) + \sum_{b=1}^{N}\bigl(\mathcal{J}_b(1)-\mathcal{K}_b(1)\bigr)\chi_a(1)-\sum_{b=1}^N\epsilon_{ba}\chi_b(1) \Big]+c.c. \\
+  &= \sum_{a=1}^{N}\int d\mathbf{x}_1\,\delta\chi_a^*(1)
+    \Big[ f(1)\chi_a(1) - \sum_{b=1}^N\epsilon_{ba}\chi_b(1) \Big]
+  \end{aligned}
+\end{equation}
+又有$\delta\chi_a^*(1)$是任意的，上式方括号内对所有a都等于0
+\begin{equation}
+  f(1)\chi_a(1) = \sum_{b=1}^N\epsilon_{ba}\chi_b(1)
+\end{equation}
+也即
+\begin{equation}
+  f|\chi_a\rangle = \sum_{b=1}^N\epsilon_{ba}|\chi_b\rangle
+  \label{eq:Fock-like}
+\end{equation}
+这个方程并非标准的本征值形式，所以这个式子看起来有些奇怪.但我们可以通过自旋轨道之间的酉变换导出正则形式
+\subsubsection{the Canonical Hartree-Fock Equations}
+对于一组新自旋轨道${\chi_a'}$由旧的自旋轨道${\chi_a}$通过酉变换而来
+\begin{equation}
+  |\chi_a'\rangle=\sum_b U_{ab}|\chi_a\rangle
+\end{equation}
+酉变换实际上就是满足以下关系的变换
+\begin{equation}
+  \mathbf{U^\dagger}=\mathbf{U^{-1}}
+\end{equation}
+它能保持 (被变换基的) 正交归一性.现考虑一经过酉变换的波函数，有
+\begin{equation}
+  |\Psi_0'\rangle=det(\mathbf{U})|\Psi_0\rangle
+\end{equation}
+因为
+\begin{align*}
+  \mathbf{U^\dagger}\mathbf{U} &= 1 \\
+  \det(\mathbf{U^\dagger}\mathbf{U}) &= |\det(\mathbf{U})|^2 = 1
+\end{align*}
+所以
+\begin{equation}
+  \det(\mathbf{U})=e^{i\theta}
+\end{equation}
 
+所以变换后行列式与原行列式仅差一个相因子.若$\mathbf{U}$是酉矩阵，则仅能取±1.
+在单行列式 波函数下, 所有期望值在自旋轨道的任意酉变换下都不变. 因此使总能量取驻值的
+自旋轨道集合并不是唯一的, 而且某一组自旋轨道并不比其他轨道更有物理意义. 举个例 子,
+ 定域自旋轨道并不比离域自旋轨道更“物理”.我们利用单行列式在自旋轨道酉变换下不变的性质,
+ 将式\ref{eq:Fock-like}改写为 关于一组特定轨道的本征值方程. 但首先需确定以上
+ 酉变换对 Fock 算符和 Lagrange 乘子矩阵的影响.
 
+ Fock 算符中依赖于自旋轨道的部分是库伦和交换算符. 经过变换后 的库伦算符之和为:
+\begin{align*}
+  \sum_a\mathcal{J}_a'(1) &= \sum_a \int d\mathbf{x}_2\, \chi_a^{\prime*}(2) r_{12}^{-1} \chi_a'(2) \\
+  &= \sum_{bc}\Bigl[\sum_a U_{ba}^* U_{ca}\Bigr] \int d\mathbf{x}_2\, \chi_b^*(2) r_{12}^{-1} \chi_c(2)
+\end{align*}
+注意到
+\begin{equation}
+  \sum_a U_{ba}^*U_{ca}=\delta_{bc}
+\end{equation}
+那么可以得到
+\begin{equation}
+  \sum_a\mathcal{J}_a'(1)=\sum_b\mathcal{J}_b(1)
+\end{equation}
+因此库伦算符在自旋轨道的酉变换下不变. 以相同的方式易证交换算符之和在自旋轨 道的任意酉变换下不变, 因而 Fock 算符也不变
+\begin{equation}
+  f'(1)=f(1)
+\end{equation}
+现在来确定酉变换对 Lagrange 乘子的作用. 将式\ref{eq:Fock-like}左乘$\langle\chi_c|$就可证明 Lagrange 乘子是 Fock 算符的矩阵元
+\begin{equation}
+  \epsilon_{ca}=\langle\chi_c|f|\chi_a\rangle
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+    \epsilon_{ab}' &= \int d\mathbf{x}_1\,\chi_a^{\prime*}(1)f(1)\chi_b'(1) \\
+    &= \sum_{cd} U_{ca}^*U_{db} \int d\mathbf{x}_1\,\chi_c^*(1)f(1)\chi_d(1) \\
+    &= (\mathbf{U^\dagger\epsilon U})_{ab}
+  \end{aligned}
+\end{equation}
+对于$\epsilon$是一个厄米矩阵.因此总能找到一个合适的酉矩阵$\mathbf{U}$使得变换$\epsilon'=\mathbf{U^\dagger\epsilon U}$把
+$\epsilon$对角化.
+并且它存在且唯一. 那么一定 有一组自旋轨道 ${\chi_a′}$ 使得 Lagrange 乘子矩阵为对角化,Hartree-Fock 方程写为
+\begin{equation}
+  f|\chi_a\rangle=\epsilon_a|\chi_a\rangle
+\end{equation}
+这组解叫作正则自旋轨道.它们一般是离域化的并且构成该分子点群下的不可约表 示的基, 也即, 
+它们会有对应于该分子对称性的特定对称性质, 或者等价地, 对应于 Fock 算符的对称性. 
+一旦得到这组正则自旋轨道, 我们就能对其进行酉变换得到无数组等价 的轨道. 
+实际上, 有许多准则可用来寻找酉变换以使轨道经变换后变为定域的、更符合 对化学键的直觉的轨道.
 \end{document}
