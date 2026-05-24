@@ -1094,4 +1094,126 @@ $\epsilon$对角化.
 它们会有对应于该分子对称性的特定对称性质, 或者等价地, 对应于 Fock 算符的对称性. 
 一旦得到这组正则自旋轨道, 我们就能对其进行酉变换得到无数组等价 的轨道. 
 实际上, 有许多准则可用来寻找酉变换以使轨道经变换后变为定域的、更符合 对化学键的直觉的轨道.
+\subsection{Interpretation of Solutions to the Hartree-Fock Equations}
+为求解 Hartree-Fock 方程, 需要引入基组并求解对应的矩阵方程. 但该本征值方 程及其解也有不依赖于基组的一些性质, 此时正好来讨论它们.
+\subsubsection{Orbital Energies and Koopmans' Theorem}
+对于 N-电子体系, 将行列式 $|\chi_1\chi_2\dots\chi_N\rangle$的能量极小化后就得到一组关 于 N 个被占自旋轨道 ${\chi_a}$
+ 的本征值方程$f|\chi_a\rangle=\epsilon_a|\chi_a\rangle$. Fock 算符对这些被占轨道 有泛函的依赖, 
+ 但若这些被占轨道已知, 那么 Fock 算符就变为一个正常的厄米算符, 有 无穷个本征函数
+\begin{equation}
+  f|\chi_j\rangle=\epsilon_j|\chi_\rangle j\quad j=1,2,\dots,\infty
+  \label{eq:fock}
+\end{equation}
+式\ref{eq:fock}的每个解$|\chi_i\rangle$都有一个自旋轨道能量$\epsilon_j$.对于 N-电子体系, 在 Hartree-Fock 理论中 N 个最低自旋轨道能量对应 N 个被占自旋轨道,
+其他的解称为虚自旋轨道. 它们可以由 Fock 算符对角化得到, 这些解构成了一个无穷集合.
+用$\langle\chi_i|$左乘式\ref{eq:fock}可以证明Fock 算符在这组自旋轨道下的的矩阵表示是对角 的, 其对角元就是轨道能量
+\begin{equation}
+  \langle\chi_i|f|\chi_j\rangle=\epsilon_j\delta_{ij}
+\end{equation}
+轨道能量可以写作
+\begin{equation}
+  \epsilon_j=\langle j|h|j\rangle+\sum_{b=1}^N\bigl[\langle jb||jb\rangle\bigr]
+\end{equation}
+具体地, 根据以上式子我们有
+\begin{equation}
+  \epsilon_a=\langle a|h|a\rangle+\sum_{b=1}^N\bigl(\langle ab||ab\rangle\bigr)
+\end{equation}
+\begin{equation}
+  \epsilon_r=\langle r|h|r\rangle+\sum_{b=1}^N\bigl(\langle rb||rb\rangle\bigr)
+\end{equation}
+若我们将基态$|\Psi_0\rangle$中的 N 个电子的能量$\epsilon_a$简单相加, 会得到
+\begin{equation}
+  \sum_a^N\epsilon_a=\sum_a^N\langle a|h|a\rangle+\sum_{ab}^N\langle ab||ab\rangle
+\end{equation}
+与单行列式的总能量$E_0$的表达式
+\begin{equation}
+  E_0=\sum_a^N\langle a|h|a\rangle+\frac{1}{2}\sum_{ab}^N\langle ab||ab\rangle
+\end{equation}
+相比, 前者多了$\frac{1}{2}\sum_{ab}^N\langle ab||ab\rangle$.因此, 轨道能量的总和并不等于单行列式的总能量. 
+但它们之间的差距仅为双电子积分项的一半,这是因为每两个自旋轨道上的两电子间相互作用被计入了两次.
+
+若总能并非轨道能量之和，现考虑其他物理意义.电子的湮灭和产生可以提供答案.
+Koopmans 定理 给定一个 $N$-电子 Hartree-Fock 单行列式 $|^{N}\Psi_0\rangle$,
+其中占据和虚自旋轨道能量分别为 $\epsilon_a$, $\epsilon_r$, 则从 $\chi_a$ 中挪去一个电子,
+保持其余轨道不变, 会产生一个 $(N-1)$-电子单行列式 $|^{N-1}\Psi_a\rangle$, 
+这个过程对应的电离能是 $-\epsilon_a$. 在虚轨道 $\chi_r$ 上增加一个电子, 保持自旋轨道不变, 
+生成一个 $(N+1)$ 电子单行列式 $|^{N+1}\Psi^r\rangle$, 此过程的电子亲和能为 $-\epsilon_r$.
+
+Koopmans 定理给出一种计算近似的电离能和电子亲和能的办法. 这种“冻结轨道”近似是假设 $(N \pm 1)$-电子态
+中的自旋轨道与 $N$-电子态中的一样. 这个近似忽略了 $(N \pm 1)$-电子态中自旋轨道的弛豫, 
+就是说, $|^{N}\Psi_0\rangle$ 中的自旋轨道并非 $|^{N-1}\Psi_a\rangle$ / $|^{N+1}\Psi^r\rangle$ 的最优自旋轨道. 
+如果分别再用另外的 Hartree-Fock 计算优化这两个态, 则 $^{N-1}E_a$, $^{N+1}E_r$ 的能量要减少.
+因此 Koopmans 定理忽略了弛豫会使算出的电离能和电子亲和能过正. 当然除此之外,
+对波函数作单行列式近似也会产生误差, 即相关效应, 通过 Hartree-Fock 之外的办法可以计算, 
+可对 Koopmans 定理的结果作进一步修正. 实际上, 当系统内电子数目越大时, 相关能也会越大. 
+因此相关效应会抹掉电离能的一部分弛豫误差, 而在电子亲和能的弛豫误差上再增加误差. 一般来说, 
+Koopmans 电离能是实验电离能值合理的一阶近似, 本章后面会讨论大量的此类计算.
+可惜 Koopmans 电子亲和能会较差. 很多中性分子增加一个电子可形成稳定的负离子. 
+但中性分子的 Hartree-Fock 计算常给出正的虚轨道能量. 电子亲和能是非常难以计算的量, 
+要比电离能难算得多
+\subsubsection{Brillouin's Theorem}
+正如上一章讨论的, 由集 合 ${\chi_i}$ 可以构造相当多的行列式. 知道了 Fock 算符的形式,
+现在正好可以证明一个关 于这些行列式的子集的定理. 该子集就是所有单激发行列式$|\Psi_r^a\rangle$,
+此即——将 $|\Psi_0\rangle$
+中 $\chi_a$ 换为 $\chi_r$ 即得. 在精确基态的多行列式表示中, 我们可能会预想, 这些单行列式将给出领头阶修正
+\begin{equation}
+  |\Psi_0\rangle=|\Psi_0\rangle+\sum_{ra}c_a^r|\Psi_a^r\rangle
+\end{equation}
+若在修正中仅考虑单激发行列式, 那么 $c_a^r$ 可以由变分原理得到——将 $\{\Psi_0\}, \{\Psi_a^r\}$ 基下的哈密顿矩阵对角化即可. 现在我们来研究包含单激发态的矩阵本征值问题:
+\begin{equation}
+  \begin{bmatrix}
+    \langle\Psi_0|\hat{H}|\Psi_0\rangle & \langle\Psi_0|\hat{H}|\Psi_a^r\rangle \\
+    \langle\Psi_a^r|\hat{H}|\Psi_0\rangle & \langle\Psi_a^r|\hat{H}|\Psi_a^r\rangle
+  \end{bmatrix}  \begin{bmatrix}
+    c_0 \\ c_a^r
+  \end{bmatrix}
+  =\epsilon
+  \begin{bmatrix}
+    c_0 \\ c_a^r
+  \end{bmatrix}
+  \label{eq:smatrix}
+\end{equation}
+两个态的混合体现在非对角元$\langle\Psi_0|\hat{H}|\Psi_a^r\rangle$上,这个矩阵元可以用我们介绍过的行列 式间矩阵元计算规则求出
+\begin{equation}
+  \langle\Psi_0|\hat{H}|\Psi_a^r\rangle=\langle a|h|r\rangle+\sum_b^N\langle ab||rb\rangle
+\end{equation}
+对于方程右边，回想Fock算符的矩阵元可以得到
+\begin{equation}
+  \langle a|f|r\rangle=\langle\Psi_0|\hat{H}|\Psi_a^r\rangle
+\end{equation}
+根据定义，求解Hartree-Fock本征值问题要求非对角元为0，因此求解 Hartree-Fock 
+本征值方程等价于确保 $|\Psi_0\rangle$不和任何单激发行列式发生混合.式\ref{eq:smatrix}中能量最低的解为
+\begin{equation}
+  \begin{pmatrix}
+  E_0 & 0 \\
+  0 & \langle\Psi_a^r|\hat{H}|\Psi_a^r\rangle
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix}
+  =E_0
+  \begin{pmatrix}
+    1 \\
+    0
+  \end{pmatrix}
+\end{equation}
+在这种意义下, Hartree-Fock 基态可以说是“稳定”的, 因为即使将单激发行列式混入, 结果也不能进一步改进. 
+Brillouin 定理单激发行列式 $|\Psi_a^r\rangle$ 不会直接与参考态即 Hartree-Fock 行列式发生作用, 
+也即 $\langle\Psi_0|\hat{H}|\Psi_a^r\rangle = 0$.
+\subsubsection{the Hartree-Fock hamiltonian}
+目前为止, 我们对 Hartree-Fock 近似的理解就是:Hamiltonian 是精确的, 
+而波函 数用单 Slater 行列式来近似. 本节中,为了第六章微扰论中的需要, 
+提前以另外一种等 价但不同的视角研究 Hartree-Fock 理论, 此时我们主要关注的是 Hamiltonian 本身.
+
+是否存在某个近似的 N-电子 Hamiltonian,其本征值方程和我们之前精确求解过的完全相同?或者说,
+ 是否存在某近似的 Hamiltonian, 使$|\Psi_0\rangle$就是其精确本征函数?答案 是存在.
+  Hartree-Fock Hamiltonian 定义如下
+  \begin{equation}
+    \hat{H}_0 =\sum_i^N\hat{f}(i)
+  \end{equation}
+上式对应本征值不是Hartree-Fock能量$E_0$，而是轨道能量之和$\sum_{a}\epsilon_a$.
+. 实际我们可以证明由 Fock 算符 的本征函数 ${χ_i}$ 组成的任意行列式都是 $H_0$ 的本征函数,
+ 本征值等于行列式中自旋轨道能量之和.
+
 \end{document}
