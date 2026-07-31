@@ -1,4 +1,7 @@
-\documentclass[12pt,a4paper]{ctexart}
+\documentclass[fontset=none,12pt,a4paper]{ctexart}
+\setCJKmainfont{Songti SC}
+\setCJKsansfont{PingFang SC}
+\setCJKmonofont{PingFang SC}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -46,7 +49,7 @@ Hartree-Fock 近似的基本思想。之后的章节就是 Hartree-Fock
 \subsection{The Electronic Problem}
 本书重点关注如何近似求解非相对论不含时 Schrödinger 方程：
 \begin{equation}
-  \hat{H} |\Phi\rangle = E |\Phi\rangle 
+  \hat{H} |\Psi\rangle = E |\Psi\rangle
   \label{eq:schrodinger}
 \end{equation}
 若用原子单位制, 则 N 个电子 M 个核的哈密顿量就是:
@@ -81,17 +84,17 @@ Hartree-Fock 近似的基本思想。之后的章节就是 Hartree-Fock
 本征值加一常数,而本征函数不变.式\eqref{eq:hamiltonian}中的剩余项称作电子
 的哈密顿量,或描述在 M 个点电荷产生的势场中运动的 N 个电子的哈密顿量,
 \begin{equation}
-\hat{H}_{elec}=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2-
+\hat{H}_{\mathrm{elec}}=-\sum_{i=1}^N\frac{1}{2}\nabla_i^2-
 \sum_{A=1}^{M}\sum_{i=1}^N\frac{Z_A}{r_{iA}}+
 \sum_{i=1}^{N}\sum_{j>i}^N\frac{1}{r_{ij}}  
 \end{equation}
 电子哈密顿量的 Schrödinger 方程为
 \begin{equation}
-  \hat{H}_{elec} |\Phi\rangle = E_{elec} |\Phi\rangle
+  \hat{H}_{\mathrm{elec}} |\Psi\rangle = E_{\mathrm{elec}} |\Psi\rangle
 \end{equation}
 其解就是电子波函数
 \begin{equation}
-  |\Phi_{\text{elec}}\rangle=\Phi_{\text{elec}}(\{\mathbf{r}_i\}; \{\mathbf{R}_A\})
+|\Psi_{\mathrm{elec}}\rangle=\Psi_{\mathrm{elec}}(\{\mathbf{r}_i\}; \{\mathbf{R}_A\})
 \end{equation}
 它描述电子的运动,并显式依赖于电子坐标,而以参数的方式依赖于核坐标,
 电子能量也参数地依赖于核坐标:
@@ -244,9 +247,9 @@ Hartree-Fock 近似的精髓在于将复杂的多电子问题转换为单电子�
 氢原准确的 $1s$ 轨道为
 \begin{equation}
   \psi_{1s}(\mathbf{r}-\mathbf{R}) = 
-  \left( \frac{\zeta^3}{\pi} \right)^{1/2} e^{-\zeta |r-R|}
+  \left( \frac{\zeta^3}{\pi} \right)^{1/2} e^{-\zeta |\mathbf{r}-\mathbf{R}|}
 \end{equation}
-$\mathbf{\zeta}$是轨道指数,本书取1.0.但本书多数使用Gaussian轨道，因为它在积分时
+$\zeta$是轨道指数,本书取1.0.但本书多数使用Gaussian轨道，因为它在积分时
 更容易，Gaussian轨道形式如下
 \begin{equation}
   \psi_{1s}(\mathbf{r}-\mathbf{R}) = 
@@ -316,10 +319,10 @@ $\{\chi_i(\mathbf{x})\}$所生产的全部可能的$N$电子Slater行列式的�
 \begin{equation}
   |\Psi\rangle = c_0 |\Phi_0\rangle + \sum_{a,r} c_a^r |\Phi_a^r\rangle + \sum_{a<b, r<s} c_{ab}^{rs} |\Phi_{ab}^{rs}\rangle + \cdots
 \end{equation}
-所以无穷集合 $\{|\Psi_i\rangle\}=\{|\Psi_0\rangle, |\Psi_a^r\rangle, |\Psi_{ab}^{rs}\rangle, \ldots\}$ 
+所以无穷集合 $\{|\Phi_i\rangle\}=\{|\Phi_0\rangle, |\Phi_a^r\rangle, |\Phi_{ab}^{rs}\rangle, \ldots\}$
 是 $N$ 电子 Hilbert 空间的一组完备基函数，并可用于展开$N$电子波函数。由完备集
-$\{|\Psi_i\rangle\}$ 产生的哈密顿算符矩阵其本征值就是基态和激发态的准确能量.
-由于每个$|\Psi_i\rangle$都对应一种自旋轨道的组态(组态即生成$|\Psi_i\rangle$
+$\{|\Phi_i\rangle\}$ 产生的哈密顿算符矩阵其本征值就是基态和激发态的准确能量.
+由于每个$|\Phi_i\rangle$都对应一种自旋轨道的组态(组态即生成$|\Phi_i\rangle$
 的自旋轨道集合),因此这种方法叫做组态相互作用(configuration interaction,CI)
 
 极小基$H_2$的精确波函数$|\Psi_0\rangle$的对称性与Hartree-Fock近似下的基态
@@ -478,7 +481,7 @@ Hartree--Fock基态能量就成为
 \end{equation}
 自旋轨道
 \begin{equation}
-  \left[i|h|j\right]=\langle i|h|j\rangle
+  \langle i|h|j\rangle
   = \int d\mathbf{x}_1\, \chi_i^*(\mathbf{x}_1)\hat{h}(\mathbf{r}_1)\chi_j(\mathbf{x}_1)
 \end{equation}
 \begin{equation}
@@ -488,7 +491,7 @@ r_{12}^{-1} \chi_k(\mathbf{x}_1)\chi_l(\mathbf{x}_2)
 \end{equation}
 
 \begin{equation}
-  \left[ij||kl\right]=\langle ij||kl\rangle
+  \langle ij||kl\rangle
   = \int d\mathbf{x}_1 d\mathbf{x}_2\,
      \chi_i^*(\mathbf{x}_1)\chi_j^*(\mathbf{x}_2)\,
      r_{12}^{-1}\,
@@ -776,11 +779,11 @@ $|\psi_1\bar{\psi_2}\rangle$(即为$|\uparrow\downarrow\rangle$)的能量就是
 \subsubsection{Spin Operators}
 单个粒子的自旋角动量算符是矢量算符
 \begin{equation}
-  \tilde{s}=\tilde{s}_x i+\tilde{s}_y j+\tilde{s}_z k
+  \hat{\mathbf{s}}=s_x\mathbf{e}_x+s_y\mathbf{e}_y+s_z\mathbf{e}_z
 \end{equation}
 可以用$s^2$及其某个分量的共同本征函数集合作为单粒子自旋态的完备集, 一般将分量选为$s_z$
 \begin{equation}
-  s^2=|s,m_s\rangle=s(s+1)|s,m_s\rangle
+  \hat{s}^{\,2}|s,m_s\rangle=s(s+1)|s,m_s\rangle
   ,\quad
   s_z|s,m_s\rangle=m_s|s,m_s\rangle
 \end{equation}
@@ -946,9 +949,9 @@ Fock算符的总和=Fock算符的本征值之和-双电子积分之和:
 \end{equation}
 显然，Fock算符的总和即总Hamiltonian在单行列式下的期望值.
 
-为方便，Fock算符可用$\mathcal{P}_{12}$重新写为
+为方便，Fock算符可用$\hat{P}_{12}$重新写为
 \begin{equation}
-  f(1)=h(1)+\sum_b\int dx_2\chi_b^*(2)r_{12}^{-1}(1-\mathcal{P}_{12})\chi_b(2)
+  f(1)=h(1)+\sum_b\int dx_2\chi_b^*(2)r_{12}^{-1}(1-\hat{P}_{12})\chi_b(2)
 \end{equation}
 \subsection{Derivation of the Hartree-Fock Equations}
 本节来推导 Hartree-Fock 方程的一般自旋轨道形式, 也即, 将单 Slater 行列式的 能量极小化以得到式\ref{hf}.
@@ -1038,19 +1041,20 @@ Fock算符的总和=Fock算符的本征值之和-双电子积分之和:
 \end{equation}
 它能保持 (被变换基的) 正交归一性.现考虑一经过酉变换的波函数，有
 \begin{equation}
-  |\Psi_0'\rangle=det(\mathbf{U})|\Psi_0\rangle
+  |\Psi_0'\rangle=\det(\mathbf{U})|\Psi_0\rangle
 \end{equation}
 因为
 \begin{align*}
-  \mathbf{U^\dagger}\mathbf{U} &= 1 \\
-  \det(\mathbf{U^\dagger}\mathbf{U}) &= |\det(\mathbf{U})|^2 = 1
+  \mathbf{U}^{\dagger}\mathbf{U} &= \mathbf{I} \\
+  \det(\mathbf{U}^{\dagger}\mathbf{U}) &= |\det(\mathbf{U})|^2 = 1
 \end{align*}
 所以
 \begin{equation}
   \det(\mathbf{U})=e^{i\theta}
 \end{equation}
 
-所以变换后行列式与原行列式仅差一个相因子.若$\mathbf{U}$是酉矩阵，则仅能取±1.
+所以变换后行列式与原行列式仅差一个相因子. 对酉矩阵而言，
+\(\det(\mathbf{U})=e^{\mathrm{i}\theta}\)，不必限制为$\pm1$.
 在单行列式 波函数下, 所有期望值在自旋轨道的任意酉变换下都不变. 因此使总能量取驻值的
 自旋轨道集合并不是唯一的, 而且某一组自旋轨道并不比其他轨道更有物理意义. 举个例 子,
  定域自旋轨道并不比离域自旋轨道更“物理”.我们利用单行列式在自旋轨道酉变换下不变的性质,
@@ -1224,13 +1228,13 @@ Brillouin 定理单激发行列式 $|\Psi_a^r\rangle$ 不会直接与参考态�
 \begin{equation}
   E_0 = \langle\Psi_0|\hat{H}|\Psi_0\rangle = \sum_a^N\varepsilon_a - \frac12\sum_a^N\sum_b^N\langle ab||ab\rangle
 \end{equation}
-\subsubsection{Restricted Closed-Shell Hartree-Fcok:The Roothaan Equations }
+\subsubsection{Restricted Closed-Shell Hartree--Fock: The Roothaan Equations}
 目前为止本章用一组自旋轨道来讨论Hartree- Fock方程.现在会讨论非限制性 Hartree-Fock 和非限制性 
 Hartree-Fock 计算. 本节所关心的是计算限制性 Hartree-Fock 波函数的流程. 我们仅考虑闭壳层的计算.
 \subsection{Closed- Shell Hartree-Fock:Restricted Spin Orbitals}
 闭壳层限制性基态表示为
 \begin{equation}
-  |\Psi_0\rangle=|\chi_1\bar{\chi}_1\chi_2\bar{\chi}_2\cdots\chi_N\bar{\chi}_N\rangle=|\psi_1\bar{\psi}_1\psi_2\bar{\psi}_2\cdots\psi_{\frac{N}{2}}\bar{\psi}_{\frac{N}{2}}\rangle
+  |\Psi_0\rangle=|\chi_1\bar{\chi}_1\chi_2\bar{\chi}_2\cdots\chi_{N/2}\bar{\chi}_{N/2}\rangle=|\psi_1\bar{\psi}_1\psi_2\bar{\psi}_2\cdots\psi_{\frac{N}{2}}\bar{\psi}_{\frac{N}{2}}\rangle
 \end{equation}
 将自旋轨道转为空间轨道的流程已在第~\ref{sec:spin-to-spatial}~节讲过:需将自旋函数积分掉. 先将这个技术用于
 Hartree-Fock 方程
@@ -1255,7 +1259,7 @@ Hartree-Fock 方程
   &\big[\int d\omega_1\alpha^*(\omega_1)f(\mathbf{x}_1\alpha(\omega_1))\big]\psi_j(\mathbf{r}_1) \\
   &\quad = \big[\int d\omega_1\alpha^*(\omega_1)h(\mathbf{r}_1\alpha(\omega_1))\big]\psi_j(\mathbf{r}_1) \\
   &\qquad +\Big[\sum_{c}\int d\omega_1d\mathbf{x}_2\,
-     \alpha^*(\omega_1)\chi_c^*(\mathbf{x}_2)r_{12}^{-1}(1-\mathcal{P}_{12})
+     \alpha^*(\omega_1)\chi_c^*(\mathbf{x}_2)r_{12}^{-1}(1-\hat{P}_{12})
      \chi_c(\mathbf{x}_2)\alpha(\omega_1)\Big]\psi_j(\mathbf{r}_1) \\
   &\qquad = \varepsilon_j\psi_j(\mathbf{r}_1)
   \end{aligned}
@@ -1316,14 +1320,14 @@ $\alpha$自旋轨道的求和与对$\beta$自旋轨道的求和是等量 的
 Roothaan的贡献就是证明了通过引入一组已知的空间基 函数,
 该微分方程可以转化为一组代数方程并可用标准的矩阵技术来求解.
 
-现引入一组K个已知的基函数${\Phi_{\mu}(\mathbf{r})}$并把未知的分子轨道线型展开
+现引入一组$K$个已知的基函数${\phi_{\mu}(\mathbf{r})}$并把未知的分子轨道线型展开
 \begin{equation}
-  \psi_i=\sum_{\mu=1}^{K}C_{\mu i}\Phi_{\mu}
+  \psi_i=\sum_{\mu=1}^{K}C_{\mu i}\phi_{\mu}
 \end{equation}
 由上式可知，计算 Hartree-Fock 分子轨道的问题约化为计算一组展开系数${C_{\mu i}}$的问题.
 把该式代入Hartree-Fock方程得到一个矩阵方程.
 \begin{equation}
-  f(q)\sum_{\nu}C_{\nu i}\phi_{\nu}(1)=\varepsilon_i\sum_{\nu}C_{\nu i}\phi_{\nu}(1)
+  f(1)\sum_{\nu}C_{\nu i}\phi_{\nu}(1)=\varepsilon_i\sum_{\nu}C_{\nu i}\phi_{\nu}(1)
 \end{equation}
 左乘$\phi_{\nu}^*(1)$并积分掉空间变量得到矩阵方程
 \begin{equation}
@@ -1372,7 +1376,7 @@ $|\psi_a(\mathbf{r})|^2$。若由一个闭壳层分子，由一单行列式所�
 所以对一个给定的基函数，矩阵$P$就完全确定了电荷密度，并且通过上式和展开系数$C$直接联系起来.
 所以可以用$C_{\mu i}$或者$P_{\mu\nu}$来表示闭壳层  Hartree-Fock 的计算结果.
 \subsubsection{Expression for the Fock Matrix}
-Fock矩阵$F$式Fock算符在基${\phi_{\mu}}$下的矩阵表示
+Fock 矩阵 $F$ 是 Fock 算符在基组 ${\phi_{\mu}}$ 下的矩阵表示
 \begin{equation}
   \begin{aligned}
       F_{\mu\nu}&=\int d\tau_1\phi_{\mu}^*(1)f(1)\phi_{\nu}(1) \\
@@ -1431,17 +1435,17 @@ Roothaan 方程是非线性的,所以需要迭代求解. 而在每步求解需�
 \begin{equation}
   \mathbf{C}'=\mathbf{X}^{-1}\mathbf{C}
 \end{equation}
-带入 Roothaan 方程并左乘$\mathbf{X}^{\dag}$，得
+带入 Roothaan 方程并左乘$\mathbf{X}^{\dagger}$，得
 \begin{equation}
- (\mathbf{X}^{\dag}\mathbf{F}\mathbf{X}\mathbf{C})=(\mathbf{X}^{\dag}\mathbf{S}\mathbf{X})\mathbf{C}\varepsilon
+ (\mathbf{X}^{\dagger}\mathbf{F}\mathbf{X}\mathbf{C})=(\mathbf{X}^{\dagger}\mathbf{S}\mathbf{X})\mathbf{C}\varepsilon
 \end{equation}
 定义新矩阵$\mathbf{F}'$为
 \begin{equation}
-  \mathbf{F}'=\mathbf{X}^{\dag}\mathbf{F}\mathbf{X}
+\mathbf{F}'=\mathbf{X}^{\dagger}\mathbf{F}\mathbf{X}
 \end{equation}
 令$\mathbf{X}$满足
 \begin{equation}
-  \mathbf{X}^{\dag}\mathbf{S}\mathbf{X}=\mathbf{I}
+  \mathbf{X}^{\dagger}\mathbf{S}\mathbf{X}=\mathbf{I}
 \end{equation}
 则Roothaan变为
 \begin{equation}
@@ -1501,7 +1505,7 @@ Roothaan 方程是非线性的,所以需要迭代求解. 而在每步求解需�
 使用基组时需要做好 ‘‘平衡”, 我们举个例子来解释:在 H2O 中,若将基函数的完 全集全放在 O 原子上, 
 那么做布居分析时, 水中的氢原子所带电荷就是 +1, 所有电子都附在了氧原子上. 
 这个简单的例子清楚地说明, 对布居分析赋予任何物理意义时要相当谨慎.
-\subsection{Model Calculations on $H_2$ and $HeH^+$}
+\subsection{Model Calculations on \texorpdfstring{$\mathrm{H}_2$}{H2} and \texorpdfstring{$\mathrm{HeH}^{+}$}{HeH+}}
 \subsubsection{The 1s Minimal STO-3G Basis Set}
 从严格的数学意义上说, 基函数$\phi_{\mu}$可以是很多种类的函数. 可行的选择非常多, 
 但 是普遍应用的只有两类. 
@@ -1529,6 +1533,6 @@ Roothaan 方程是非线性的,所以需要迭代求解. 而在每步求解需�
 
 恰当选择收缩参数后, 我们就能利用近似的原子 Hartree-Fock 函数 (如近似的 Slater 型函数等), 
 同时仍用原初高斯函数计算积分. 一种常用的流程是, 用 $L = 1,2,3\dots$ 个 原初高斯函数拟合按 Slater 型函数拟合，即这就是 STO-LG 流程.
-\subsubsection{STO-3G $H_2$}
-首先要确定核标架的几何构型,核间距使用1.4Bohr(实验值),使用标准STO-3G基组.
+\subsubsection{STO-3G \texorpdfstring{$\mathrm{H}_2$}{H2}}
+首先要确定核标架的几何构型,核间距使用$1.4\,a_0$(实验值),使用标准 STO-3G 基组.
 \end{document}
