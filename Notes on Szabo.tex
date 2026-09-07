@@ -1539,6 +1539,146 @@ Roothaan 方程是非线性的,所以需要迭代求解. 而在每步求解需�
 
 恰当选择收缩参数后, 我们就能利用近似的原子 Hartree-Fock 函数 (如近似的 Slater 型函数等), 
 同时仍用原初高斯函数计算积分. 一种常用的流程是, 用 $L = 1,2,3\dots$ 个 原初高斯函数拟合按 Slater 型函数拟合，即这就是 STO-LG 流程.
+
 \subsubsection{STO-3G \texorpdfstring{$\mathrm{H}_2$}{H2}}
-首先要确定核标架的几何构型,核间距使用$1.4\,a_0$(实验值),使用标准 STO-3G 基组.
+本小节我们进行基态 $\mathrm{H}_2$的限制性闭壳层计算.
+
+我们使用和$\mathrm{H}_2$ 极小基一样的坐标，核间距$\mathbf{R}_12=1.4 a.u.$ 并选用标准的STO-3G基组。
+下一步进行基组${\phi_\mu }$ 形成的积分，即 $S_{\mu \nu}$,$H^{core}_{\mu\nu}$ 和$(\mu\nu|\lambda\sigma))$
+
+对应的重叠、动能、核--电子吸引以及核心 Hamiltonian 矩阵为
+\begin{equation}
+  \mathbf{S}=
+  \begin{pmatrix}
+    1.0000 & 0.6593 \\
+    0.6593 & 1.0000
+  \end{pmatrix}
+\end{equation}
+\begin{align}
+  \mathbf{T} &=
+  \begin{pmatrix}
+    0.7600 & 0.2365 \\
+    0.2365 & 0.7600
+  \end{pmatrix}, \\
+  \mathbf{V}^{1} &=
+  \begin{pmatrix}
+    -1.2266 & -0.5974 \\
+    -0.5974 & -0.6538
+  \end{pmatrix}, \\
+  \mathbf{V}^{2} &=
+  \begin{pmatrix}
+    -0.6538 & -0.5974 \\
+    -0.5974 & -1.2266
+  \end{pmatrix}.
+\end{align}
+\begin{equation}
+  \mathbf{H}^{\mathrm{core}}
+  =\mathbf{T}+\mathbf{V}^{1}+\mathbf{V}^{2}
+  =
+  \begin{pmatrix}
+    -1.1204 & -0.9584 \\
+    -0.9584 & -1.1204
+  \end{pmatrix}.
+\end{equation}
+
+作为比较，若基函数取精确氢原子 $1s$ 解
+\begin{equation}
+  \phi_{1s}(\mathbf{r})=\pi^{-1/2}\exp(-r),
+\end{equation}
+则有 $T_{11}=0.5$ 以及 $V^{1}_{11}=-1.0$，从而氢原子的单电子能量为 $-0.5$~a.u.
+在此处的 STO-3G 基函数中，轨道比精确氢原子 $1s$ 轨道更收缩，因此电子更靠近核：
+$V^{1}_{11}=-1.2266$ 更负；相应地，为避免电子坍缩到核上，动能也增大为 $T_{11}=0.7600$。
+
+动能矩阵 $\mathbf{T}$ 与核吸引矩阵 $\mathbf{V}^{\mathrm{nuc}}=\mathbf{V}^{1}+\mathbf{V}^{2}$ 的非对角元
+没有简单的经典解释。
+当核间距 $R$ 很大时，原子轨道之间的重叠消失，这些非对角元也趋于零。
+
+先求解核心 Hamiltonian 的广义本征值方程
+\begin{equation}
+  \mathbf{H}^{\mathrm{core}}\mathbf{C}
+  =\mathbf{S}\mathbf{C}\boldsymbol{\varepsilon},
+\end{equation}
+即可得到极小基 $\mathrm{H}_2^+$ 的分子轨道和轨道能量。随后，对中性 $\mathrm{H}_2$ 还需构造
+依赖电子密度的 Fock 矩阵，并求解 Roothaan 方程。
+
+由于该模型具有同核双原子分子的对称性，其解可直接由对称性确定。正则分子轨道
+(canonical molecular orbitals) 按分子点群的不可约表示变换；对于同核双原子分子，
+轨道可标记为 $\sigma_g$、$\sigma_u$、$\pi_g$、$\pi_u$ 等。在极小基模型中只有两个分子轨道：
+能量较低的占据轨道是具有 $\sigma_g$ 对称性的成键轨道
+\begin{equation}
+  \psi_1=[2(1+S_{12})]^{-1/2}(\phi_1+\phi_2),
+\end{equation}
+而虚分子轨道是具有 $\sigma_u$ 对称性的反键轨道
+\begin{equation}
+  \psi_2=[2(1-S_{12})]^{-1/2}(\phi_1-\phi_2).
+\end{equation}
+相应的系数矩阵为
+\begin{equation}
+  \mathbf{C}=
+  \begin{pmatrix}
+    [2(1+S_{12})]^{-1/2} & [2(1-S_{12})]^{-1/2} \\
+    [2(1+S_{12})]^{-1/2} & -[2(1-S_{12})]^{-1/2}
+  \end{pmatrix}.
+\end{equation}
+
+对于基态闭壳层 $\mathrm{H}_2$，两个电子均占据 $\psi_1$，故密度矩阵为
+\begin{equation}
+  \mathbf{P}=
+  \begin{pmatrix}
+    (1+S_{12})^{-1} & (1+S_{12})^{-1} \\
+    (1+S_{12})^{-1} & (1+S_{12})^{-1}
+  \end{pmatrix}
+  =\frac{1}{1+S_{12}}
+  \begin{pmatrix}
+    1 & 1 \\
+    1 & 1
+  \end{pmatrix}.
+\end{equation}
+在这里的限制性闭壳层模型中，若 SCF 迭代的初始密度矩阵与上述结果不同，
+只要迭代保持分子对称性，计算就会收敛到这一由对称性确定的解。
+
+在正则分子轨道基下，变换后的 Fock 矩阵元为
+\begin{equation}
+  f_{ij}=\langle\psi_i|\hat{f}|\psi_j\rangle.
+\end{equation}
+根据正则 Hartree--Fock 方程，该矩阵是对角矩阵，其对角元即为轨道能量。
+闭壳层体系的轨道能量可写为
+\begin{equation}
+  \varepsilon_i=h_{ii}+\sum_{b}^{N/2}\left(2J_{ib}-K_{ib}\right).
+  \label{eq:rhf-orbital-energy-minimal-h2}
+\end{equation}
+在此处的极小基模型中，只有轨道 $1$ 被占据，因而
+\begin{align}
+  \varepsilon_1&=h_{11}+J_{11}=-0.5782~\text{a.u.}, \\
+  \varepsilon_2&=h_{22}+2J_{12}-K_{12}=+0.6703~\text{a.u.}.
+\end{align}
+注意 $\varepsilon_2\neq h_{22}+J_{22}$。这是因为轨道 $2$ 是虚轨道；它描述的是在冻结
+其余轨道的近似下，将一个电子加入该轨道后 $(N+1)$ 电子体系中该电子的能量，
+这正是 Koopmans 定理中的含义。
+
+基态的电子能量为
+\begin{equation}
+  E_0=2h_{11}+J_{11}=-1.8310~\text{a.u.}
+\end{equation}
+加上核--核排斥能后，分子的总能量为
+\begin{equation}
+  E_{\mathrm{tot}}=E_0+\frac{1}{R}=-1.1167~\text{a.u.}
+\end{equation}
+由于在该 STO-3G 基组下，氢原子能量为 $-0.4666$~a.u.，预测的解离能为
+\begin{equation}
+  D_e=2(-0.4666)-(-1.1167)=0.1835~\text{a.u.}=4.99~\text{eV}.
+\end{equation}
+这一数值与实验值 $D_e\approx4.75$~eV 相当接近。
+
+不过，要完整讨论解离，还必须考察不同核间距下的总能量，也就是势能曲线
+(potential-energy curve)。在每个 $R$ 上重复上述计算，即可得到 $E_{\mathrm{tot}}(R)$。
+极小基限制性闭壳层 Hartree--Fock 在平衡键长附近可以给出合理结果，但在 $R\to\infty$ 时
+不能正确描述两个开壳层氢原子的解离极限：限制性解会强制两个电子继续占据同一个空间轨道。
+之后讨论非限制性 Hartree--Fock (unrestricted Hartree--Fock, UHF) 时，会进一步分析这一解离问题。
+计算得到的平衡构型，就是 $E_{\mathrm{tot}}$ 关于核坐标取最小值时的构型。
+
+
+
+
+
 \end{document}
