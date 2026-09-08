@@ -1677,6 +1677,67 @@ $V^{1}_{11}=-1.2266$ 更负；相应地，为避免电子坍缩到核上，动�
 之后讨论非限制性 Hartree--Fock (unrestricted Hartree--Fock, UHF) 时，会进一步分析这一解离问题。
 计算得到的平衡构型，就是 $E_{\mathrm{tot}}$ 关于核坐标取最小值时的构型。
 
+\subsubsection{STO-3G \texorpdfstring{$\mathrm{HeH}^{+}$}{HeH+}: SCF Iteration}
+
+极小基 $\mathrm{H}_2$ 的分子轨道可由同核双原子分子的对称性直接确定，因而不能充分展示
+自洽场迭代。$\mathrm{HeH}^{+}$ 是异核双原子分子，两个原子轨道不等价，分子轨道系数
+不能预先由对称性给出；它因此是理解 Roothaan 方程迭代求解的最小模型。
+
+在平衡核间距 $R=1.4632$~a.u. 处，以 He 上的 $1s$ 基函数 $\phi_1$ 和 H 上的 $1s$
+基函数 $\phi_2$ 构成极小 STO-3G 基组。指数通常取 $\zeta_{\mathrm H}=1.24$；He 的
+``原子最优''指数为 $\zeta_{\mathrm{He}}=27/16=1.6875$。这里需要区分：基函数指数
+(exponent) 是非线性参数，而 SCF 中更新的 MO 系数和密度矩阵是线性参数。
+
+\paragraph{SCF 的核心闭环}
+取 $\mathbf{P}^{(0)}=\mathbf{0}$ 时，电子--电子项 $\mathbf{G}$ 为零，故初始 Fock 矩阵为
+\begin{equation}
+  \mathbf{F}^{(0)}=\mathbf{H}^{\mathrm{core}}.
+\end{equation}
+随后不断重复
+\begin{equation}
+  \mathbf{P}^{(n)}
+  \longrightarrow \mathbf{G}[\mathbf{P}^{(n)}]
+  \longrightarrow \mathbf{F}^{(n)}=\mathbf{H}^{\mathrm{core}}+\mathbf{G}[\mathbf{P}^{(n)}]
+  \longrightarrow \mathbf{F}^{(n)}\mathbf{C}^{(n+1)}
+  =\mathbf{S}\mathbf{C}^{(n+1)}\boldsymbol{\varepsilon}^{(n+1)}
+  \longrightarrow \mathbf{P}^{(n+1)},
+\end{equation}
+直至密度矩阵或能量不再改变，即收敛达到自洽。每一步可用与该 Fock
+矩阵相配套的密度矩阵计算电子能量
+\begin{equation}
+  E_0=\frac{1}{2}\sum_{\mu\nu}P_{\nu\mu}
+  \left(H^{\mathrm{core}}_{\mu\nu}+F_{\mu\nu}\right).
+\end{equation}
+这个例子中，忽略电子--电子排斥的初猜会使电子过度偏向核电荷更大的 He；加入
+Coulomb--exchange 平均场后，电子密度部分向 H 端重新分布，能量单调收敛。
+
+收敛后的正则轨道系数和轨道能量为
+\begin{equation}
+  \mathbf{C}=
+  \begin{pmatrix}
+    0.8018 & -0.7823 \\
+    0.3368 &  1.0684
+  \end{pmatrix},\qquad
+  \boldsymbol{\varepsilon}=
+  \begin{pmatrix}
+    -1.5975 & 0 \\
+    0 & -0.0617
+  \end{pmatrix}\ \text{a.u.}
+\end{equation}
+占据轨道中 $\phi_1$ 的系数较大，说明电子密度主要位于 He 附近；但它仍含有 H 的同相
+成分，故为成键轨道 (bonding orbital)。相应的反键虚轨道中两个系数异号。
+
+总能量需加入核--核排斥项 $Z_{\mathrm{He}}Z_{\mathrm H}/R=2/R$：
+\begin{equation}
+  E_{\mathrm{tot}}=E_0+\frac{2}{R}=-2.860662~\text{a.u.}
+\end{equation}
+该极小基模型正确预测了解离产物为闭壳层的 $\mathrm{He}+\mathrm{H}^+$，而不是
+$\mathrm{He}^{+}+\mathrm H$。这也解释了它在大 $R$ 时比限制性闭壳层 $\mathrm H_2$
+表现更合理：其正确解离极限本身就是闭壳层。不过，预测的解离能
+$D_e=0.2168$~a.u. ($5.90$~eV) 高于精确值约 $2.04$~eV；主要原因是同一套固定的 He
+指数更适合分子而非孤立 He 原子，反映的是基组与指数的局限，而非 SCF 迭代本身失效。
+
+
 
 
 
