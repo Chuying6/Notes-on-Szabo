@@ -1737,6 +1737,110 @@ $\mathrm{He}^{+}+\mathrm H$。这也解释了它在大 $R$ 时比限制性闭壳
 $D_e=0.2168$~a.u. ($5.90$~eV) 高于精确值约 $2.04$~eV；主要原因是同一套固定的 He
 指数更适合分子而非孤立 He 原子，反映的是基组与指数的局限，而非 SCF 迭代本身失效。
 
+\subsection{多原子基组 (Polyatomic Basis Sets)}
+
+本节比较四类常用基组：STO-3G、4-31G、6-31G* 与 6-31G**。这些基组在 Gaussian 系列
+程序中广泛使用，其名称中的数字表示收缩方式。
+
+基组变大通常会降低变分能量，但计算量也会显著增加；在 Hartree--Fock 计算中，最耗时的
+双电子积分及其变换通常随基函数数 $K$ 快速增长，常以 $K^4$ 作为量级估计。
+
+\subsubsection{收缩型高斯函数 (Contracted Gaussian Functions)}
+
+分子轨道在原子轨道基组中的线性展开为
+\begin{equation}
+  \psi_i(\mathbf r)=\sum_{\mu=1}^{K}C_{\mu i}\phi_\mu(\mathbf r).
+  \label{eq:mo-lcao-expansion}
+\end{equation}
+选择基函数时有两难的问题：Slater 型函数 (STO) 的形状更接近真实原子轨道，
+但 Gaussian 型函数 (GTO) 的积分更快。收缩型高斯函数 (CGF) 用固定线性组合把二者结合：
+\begin{equation}
+  \phi_\mu^{\mathrm{CGF}}(\mathbf r-\mathbf R_A)
+  =\sum_{p=1}^{L}d_{p\mu}\,
+  g_p(\alpha_{p\mu},\mathbf r-\mathbf R_A).
+  \label{eq:contracted-gaussian}
+\end{equation}
+其中 $g_p$ 是归一化的原初高斯函数 (primitive Gaussian function)，$\alpha_{p\mu}$
+是指数，$d_{p\mu}$ 是收缩系数，$L$ 是收缩长度 (contraction length)。\textbf{一个 CGF
+才算一个基函数}；其中包含的多个原初高斯函数不会使 MO 展开的维数增加。
+
+这一区分十分重要：先在原子计算中用较大的未收缩基组优化指数和系数，再把若干原初函数
+固定收缩成较少的 CGF，便能以较低代价保留大部分原子轨道形状。收缩主要减少计算成本，
+但也会牺牲部分适应不同分子环境的变分灵活性。
+
+对于同一 $sp$ 壳层，$s$ 与三个 $p$ 分量通常共享一套指数。这样既使它们具有相同的径向
+行为，又可复用径向积分；但要记住一个 $p$ 壳层对应 $p_x,p_y,p_z$ 三个基函数。
+
+\subsubsection{极小基组：STO-3G (Minimal Basis Sets)}
+
+极小基组 (minimal basis set) 的原则是：每个占据的原子价层轨道至少给一个径向基函数。对
+H、He 为 $1$ 个 $s$ 函数；对第二周期 Li--Ne，通常为 $1s+2s+2p_x+2p_y+2p_z$，共 $5$
+个函数。后者看似多给了未占据的 $2p$ 轨道，但这是为了完整表示 $sp$ 壳层，并保持原子的
+角向自由度。
+
+STO-$L$G 表示用 $L$ 个原初 GTO 的固定收缩近似一个 STO；例如 STO-3G 的每个收缩函数
+由三个原初高斯函数组成。原初指数大致随有效核电荷平方改变，$\alpha\propto\zeta^2$。
+因此同一原子在不同化学环境中的最优轨道指数 (orbital exponent) 并不完全相同：
+\begin{itemize}
+  \item 为孤立原子优化的指数，最适合孤立原子；
+  \item 针对每一个分子重新优化指数，最灵活，但会引入昂贵的非线性优化；
+  \item 标准基组采用折衷指数，使一套参数能服务一批分子。
+\end{itemize}
+例如前面 $\mathrm{H_2}$ 的 STO-3G 氢 $1s$ 指数取 $\zeta=1.24$，只是这种折衷参数，并非
+所有键长和所有氢化合物的严格最优值。
+
+\subsubsection{双 zeta 与劈裂价层基组 (Double-Zeta and Split-Valence Basis Sets)}
+
+单一径向函数很难同时描述原子核附近较紧密、以及成键或极化后较扩展的电子密度。双
+$\zeta$ 基组 (double-zeta basis set) 为同一个原子轨道提供两套不同径向尺度的函数；MO
+系数在线性变分中自行混合它们，从而获得径向弹性，而不必在每个 SCF 循环中重新优化非线性
+指数。
+
+4-31G 是劈裂价层基组 (split-valence basis set)，不是所有壳层都严格的双 $\zeta$：内层
+(core) 仍用一组紧密函数，价层 (valence) 则劈裂成内、外两组。命名 ``4-31'' 的含义是：
+内壳层收缩函数由 $4$ 个原初高斯组成；价层被写成一组 $3$ 原初函数的收缩函数加上一组
+单原初函数。对 C 等第二周期原子，计数为
+\[
+  1\;(\text{core }s)+4\;(\text{inner }sp)+4\;(\text{outer }sp)=9;
+\]
+对 H 则有两组 $s$ 函数，故为 $2$。\textbf{这里的 4、3、1 描述收缩方式，不直接等于
+最终基函数数目。}
+
+\subsubsection{极化函数 (Polarization Functions)}
+
+即使价层已有两种径向尺度，若每个原子仍只保留原子态固有的角动量，电子云也难以朝键轴或
+邻近电荷方向偏移。极化函数 (polarization functions) 就是在原子上加入较高角动量函数，
+以提供这种角向变形。例如氢原子在外电场或分子中非球形电场下，波函数需要将原来的 $1s$
+成分与 $p$ 成分混合；这不是说孤立氢原子本身有被占据的 $p$ 轨道，而是分子环境打破了球
+对称性。
+
+6-31G* 在第二周期重原子（如 C、N、O、F）上加入一组 $d$ 极化函数；6-31G** 再在 H
+上加入一组 $p$ 极化函数。按本书的笛卡尔表示，一组 $d$ 函数为
+\[
+  d_{xx},d_{yy},d_{zz},d_{xy},d_{xz},d_{yz},
+\]
+共 $6$ 个；它可分解为 $5$ 个纯 $d$ 函数与一个 $s$ 型组合。不同程序也可能采用 $5$ 个
+球谐 $d$ 函数，故比较基函数数目时必须先确认约定。6-31G* 与 6-31G** 通常比极小基或仅
+劈裂价层基组给出更好的定量结果，但高精度还可能需要更多 $\zeta$、多套极化函数及弥散函数
+(diffuse functions)。
+
+\paragraph{练习 3.31：苯的基函数数目}
+计算的是\textbf{收缩基函数}数目，而不是原初高斯函数数目。苯为 $\mathrm{C_6H_6}$；本书采用
+笛卡尔 $d$ 函数，故一个 $d$ 壳层含六个函数。
+\begin{align}
+  N_{\mathrm{STO\text{-}3G}}
+  &=6\times 5_{\mathrm C}+6\times 1_{\mathrm H}=36,\\
+  N_{\mathrm{4\text{-}31G}}
+  &=6\times 9_{\mathrm C}+6\times 2_{\mathrm H}=66,\\
+  N_{\mathrm{6\text{-}31G^*}}
+  &=6\times(9+6)_{\mathrm C}+6\times 2_{\mathrm H}=102,\\
+  N_{\mathrm{6\text{-}31G^{**}}}
+  &=6\times(9+6)_{\mathrm C}+6\times(2+3)_{\mathrm H}=120.
+\end{align}
+STO-3G 中 C 为 $1s+2s+2p_x+2p_y+2p_z=5$，H 为 $1$；4-31G 中 C 为
+$1+4+4=9$，H 为 $2$。6-31G* 给每个 C 加 $6$ 个笛卡尔 $d$ 函数；6-31G** 再给每个 H
+加 $3$ 个 $p$ 函数。若采用五个球谐 $d$ 函数，后两项会变为 $96$ 与 $114$。
+
 
 
 
