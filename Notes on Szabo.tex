@@ -1841,6 +1841,65 @@ STO-3G 中 C 为 $1s+2s+2p_x+2p_y+2p_z=5$，H 为 $1$；4-31G 中 C 为
 $1+4+4=9$，H 为 $2$。6-31G* 给每个 C 加 $6$ 个笛卡尔 $d$ 函数；6-31G** 再给每个 H
 加 $3$ 个 $p$ 函数。若采用五个球谐 $d$ 函数，后两项会变为 $96$ 与 $114$。
 
+\subsection{闭壳层分子计算示例 (Closed-Shell Molecular Calculations)}
+
+本节用几个闭壳层分子说明：基组变大时总能量会下降，但化学上更常比较能量差、结构和分子性质。
+
+\subsubsection{总能量 (Total Energy)}
+
+总能量由电子能量和核--核排斥组成：
+\[
+  E_{\mathrm{tot}}=E_0+\sum_{A<B}\frac{Z_AZ_B}{R_{AB}}.
+\]
+固定构型下，基组越大，HF 能量越低并趋近 HF 极限；但 HF 极限仍缺少电子相关
+(electron correlation)。反应能使用
+\(\Delta E=\sum E_{\mathrm{products}}-\sum E_{\mathrm{reactants}}\)。它不再有变分上界，
+但使用均衡基组时基组误差常可部分抵消。\textbf{绝对能量主要看收敛；化学反应主要看能量差。}
+
+对 $\mathrm{H_2}$，6-31G* 不增加函数，故等价于 4-31G；对不含 H 的 $\mathrm{CO}$、
+$\mathrm{N_2}$，6-31G** 等价于 6-31G*。
+
+\subsubsection{电离势 (Ionization Potentials)}
+
+Koopmans 定理给出
+\[
+  \mathrm{IP}\approx-\varepsilon_{\mathrm{HOMO}},
+\]
+其中 HOMO (highest occupied molecular orbital) 是最高占据轨道。$\mathrm{H_2}$ 的占据轨道在较大
+基组下约为 $-0.595\ E_h$，所以预测电离势为 $+0.595\ E_h$，接近实验值 $0.584\ E_h$。
+
+表中的电离势是\textbf{垂直电离势} (vertical IP)：电离前后核位置不变；绝热电离势允许离子
+和中性分子各自优化结构。$\mathrm{H_2}$ 的好结果来自相关效应和离子轨道弛豫 (orbital relaxation)
+的误差抵消。Koopmans 适合初步归属占据轨道，不能可靠预测电子亲和能；$\mathrm{N_2}$ 就是它
+可能给出错误定性轨道排序的反例。
+
+\subsubsection{平衡几何构型 (Equilibrium Geometries)}
+
+在 Born--Oppenheimer 近似下，$E_{\mathrm{tot}}(\mathbf R)$ 定义势能面 (potential energy
+surface, PES)。平衡结构是势能面的极小点：梯度为零，Hessian 为正定；鞍点则对应过渡态。
+
+几何优化 (geometry optimization) 是对核坐标的非线性最小化，实际计算通常借助能量梯度。
+RHF 在平衡点附近可预测合理结构，但不能可靠描述开壳层解离区。HF 常将键长预测得略短；
+极小基的误差更大。对键角，$d$ 极化函数很重要，例如只用 $s,p$ 基组可能错误把 $\mathrm{NH_3}$
+预测为平面结构。
+
+\subsubsection{布居分析与偶极矩}
+
+电子密度由密度矩阵给出：
+\[
+  \rho(\mathbf r)=\sum_{\mu\nu}P_{\mu\nu}
+  \phi_\mu(\mathbf r)\phi_\nu^*(\mathbf r).
+\]
+偶极矩 (dipole moment) 是电子贡献与核贡献的和：
+\[
+  \boldsymbol\mu=-\sum_{\mu\nu}P_{\mu\nu}(\nu|\mathbf r|\mu)
+  +\sum_AZ_A\mathbf R_A.
+\]
+
+Mulliken 和 L\"owdin 布居分析 (population analysis) 都把电子密度按某种规则分给各原子，
+从而得到原子电荷。\textbf{原子电荷不是唯一的可观测量：它依赖分区方案和基组。}因此可用同一
+方法、同一基组比较电荷变化趋势，但不应把单一 Mulliken 电荷当作绝对事实。
+
 
 
 
